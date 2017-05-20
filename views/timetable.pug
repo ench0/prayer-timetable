@@ -76,17 +76,6 @@ block content
 
             hr
 
-            //- div#ramadan.section.center
-            //-     div.content
-
-
-
-            //- div.section.center
-            //-     div.content
-            //-         //- h3=settings.title
-            //-         div.arabic(style='white-space:pre-line;font-size:70%;')!= settings.body
-            //-         div.header.arabic(style='white-space: pre-line;font-size:90%;')!= settings.announcement
-
 
         - if(((settings.jummuahtime).split(":"))[1] < 10) var jummuahtime = ((settings.jummuahtime).split(":"))[0] + ": 0" + ((settings.jummuahtime).split(":"))[1]; else var jummuahtime = settings.jummuahtime;
 
@@ -95,8 +84,6 @@ block content
                 h2.uk-text-uppercase=settings.jummuahlabel + " " + jummuahtime
                     | 
                     span#ramadan
-
-
 
 
     div.overlay.uk-position-cover.uk-overlay.uk-overlay-default.uk-flex.uk-flex-center.uk-flex-middle.uk-text-center &nbsp;

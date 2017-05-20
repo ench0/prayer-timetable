@@ -200,14 +200,8 @@ const times = function() {
     // console.log("opt09");
   }
 
-//          0     1        2      3    4        5     6    7     8
+//              0     1        2      3    4        5     6    7     8
   let output = [fajr, shurooq, dhuhr, asr, maghrib, isha, now, next, current]
-//   output = {
-      
-//     // fajr: fajr, shurooq: shurooq, dhuhr: dhuhr, asr: asr, maghrib: maghrib, isha: isha,
-//     // now: now, next: next, current: current
-//   }
-  
 
   return (output)
 }
@@ -245,7 +239,6 @@ const timeDisp = (function() {
 
 
 	// Prayer time display
-	// for(i=0,list=["fajr","shurooq","dhuhr","asr","maghrib","isha"];i<6;i++){
     for(let i=0,list=settings.names;i<6;i++){
         let timeToJamaah = moment.duration((def[8].jamaahtime).diff(moment()), 'milliseconds').add(1, 's');//.asMinutes();
         timeToJamaah.hours = appendZero(timeToJamaah.hours());
@@ -306,7 +299,7 @@ const timeDisp = (function() {
   else {
     // console.log("not the time")
     document.getElementsByClassName("overlay")[0].style = "background: rgba(0,0,0,0);z-index:-9";
-	document.getElementsByClassName("overlay")[0].textContent = "";
+	  document.getElementsByClassName("overlay")[0].textContent = "";
   }
 
   // no overlay on main
@@ -324,7 +317,7 @@ const timeDisp = (function() {
   if (hijriMonth == "8" && hijriDay != "30")
   {
     document.getElementById("ramadan").style = "display: inline;";
-    document.getElementById("ramadan").innerHTML = " | " + moment.duration(moment().endOf('imonth').diff(moment())).humanize()+" until Ramadan";
+    document.getElementById("ramadan").innerHTML = " | " + moment.duration(moment().endOf('imonth').diff(moment())).humanize()+" "+settings.ramadancountdownlabel;
   }
 
     // setTimeout(function(){timeDisp()}, 1000);
