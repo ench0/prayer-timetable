@@ -83,7 +83,7 @@ if (settings.language == "nl") {
     moment.locale('nl');
     city = "Europe/Amsterdam"
 }
-else city = "Europe/Dublin"
+else city = "Europe/Dublin";
 
 (function(){
 
