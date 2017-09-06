@@ -1,3 +1,6 @@
+html {
+    color: #333;
+}
 /*refresh*/
 #refresh {
     z-index: 9999;
@@ -54,20 +57,12 @@
     background: rgba(0,0,0,0);
     color: #eee;
     font-size: 150%;
-    /* z-index: 9999;
-    display: block;
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    font-size: 2em;
-    color: #ccc;
-    padding-top: 1500px;
-    text-align: center; */
     transition: background 15s, display 15s, z-index 15s;
   }
 
-  /* .uk-position-cover {
-      background: rgba(0,0,0,.3);
-      transition: background 15s, display 15s, z-index 15s;      
-  } */
+  .uk-table th {
+      color: #333;
+  }
+  hr {
+    border-top: 1px solid #fff;
+  }

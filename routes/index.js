@@ -1,12 +1,12 @@
-var express = require('express');
-var router = express.Router();
-var settings = require('../controllers/settings');
-var admin = require('../controllers/admin');
-var update = require('../controllers/update');
-var timedef = "var settings="+JSON.stringify(settings);
+const express = require('express');
+const router = express.Router();
+const settings = require('../controllers/settings');
+const admin = require('../controllers/admin');
+const update = require('../controllers/update');
+const timedef = "var settings="+JSON.stringify(settings);
 
 
-var auth = require('http-auth');
+const auth = require('http-auth');
 var basic = auth.basic({
     realm: "Admin Area",
     file: __dirname + "/user.pass"

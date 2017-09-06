@@ -33,7 +33,7 @@ block content
                             th.uk-text-right.arabic صلاة
 
 
-                    tbody.uk-text-uppercase.uk-text-center(style="background:rgba(255,255,255,.5);")
+                    tbody.uk-text-uppercase.uk-text-center(style="background:rgba(255,255,255,.35);")
                         - i = 0;
                         - names = [[settings.names[0],'الفجر'], [settings.names[1], 'الشروق'], [settings.names[2], 'الظهر'], [settings.names[3], 'العصر'], [settings.names[4], 'المغرب'], [settings.names[5], 'العشاء']]
                         each val in names
@@ -52,7 +52,7 @@ block content
 
             hr
 
-            div.uk-section.uk-section-small.uk-text-center(style="border:2px solid #fff;")
+            div.uk-section.uk-section-small.uk-text-center
                 - var bodytext = settings.body.split("\r\n");
                 - var announcements = settings.announcement.split("\r\n");
 
@@ -73,6 +73,7 @@ block content
                                 - val = array.join(" ")
                                 li.next.arabic=val
 
+            hr
 
             div#ramadan.section.center
                 div.content
@@ -86,10 +87,11 @@ block content
             //-         div.header.arabic(style='white-space: pre-line;font-size:90%;')!= settings.announcement
 
 
+        - if(((settings.jummuahtime).split(":"))[1] < 10) var jummuahtime = ((settings.jummuahtime).split(":"))[0] + ": 0" + ((settings.jummuahtime).split(":"))[1]; else var jummuahtime = settings.jummuahtime;
 
         div.uk-section.uk-section-xsmall.uk-section-secondary.uk-text-center.uk-padding-remove.uk-position-bottom
             div.uk-container.uk-text-center
-                h3.uk-text-uppercase=settings.jummuahlabel + " " + settings.jummuahtime
+                h3.uk-text-uppercase=settings.jummuahlabel + " " + jummuahtime
 
 
 

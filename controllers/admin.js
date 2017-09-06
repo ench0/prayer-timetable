@@ -2,6 +2,8 @@ var settings = require('./settings');
 var time = require('./time');
 var jsonfile = require('jsonfile')
 var S = require('string');
+var sys = require('util')
+var exec = require('child_process').exec;
 
 // admin form on GET
 exports.admin_get = function(req, res, next) {
@@ -12,7 +14,7 @@ exports.admin_get = function(req, res, next) {
 // View on GET
 exports.view = function(req, res, next) {
     var message = req.query.message;
-    res.render('view', { title: 'View Timetable', settings: settings, time: time, message: message });
+    res.render('view', { title: 'View Timetable!', settings: settings, time: time, message: message });
 };
 
 // admin post
@@ -58,24 +60,27 @@ exports.admin_post = function(req, res, next) {
         
         var file = __dirname+'/settings.json'
         
+        console.error("$$$started file write")
+        
         jsonfile.writeFile(file, settingsnew, {spaces: 2}, function(err) {
-            console.error("errors")
+            console.error("errors:")
             console.error(err)
-            console.error("file")
+            console.error("file:")
             console.error(file)
-            console.error("settings")
+            console.error("settings:")
             console.error(settingsnew)
         })
+        // jsonfile.writeFileSync(file, settingsnew, {spaces: 2})
 
+
+        console.error("$$$finished file write")
+        
         //restart
-        var sys = require('sys')
-        var exec = require('child_process').exec;
-        var child;
-        var sys = require('sys')
-        var exec = require('child_process').exec;
-        function puts(error, stdout, stderr) { sys.puts(stdout) }
+        function puts(error, stdout, stderr) { console.log(stdout) }
         exec("pm2 reload www", puts);
 
-        res.redirect("/view/?message=Sucess!");
+        // res.redirect("/view/?message=Sucess!");
+        res.render('view', { title: 'View Timetable!', settings: settings, time: time, message: "Success!" });
+        
     }
 };
