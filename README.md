@@ -1,1 +1,1 @@
-# js_timetable_rdam
+# js_prayer_timetable

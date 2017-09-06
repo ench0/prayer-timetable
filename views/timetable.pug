@@ -1,0 +1,101 @@
+extends layout
+
+block content
+
+    div#refresh.uk-padding-remove.uk-margin-small
+        div.fadein
+        div#message-text.black
+        div.fadeout
+
+    div.uk-section(style="background:"+settings.themecol+" url(\""+settings.themeimg+"\") 50%" uk-height-viewport="offset-top: true")
+
+        div.uk-section.uk-section-small.uk-section-secondary.uk-text-center.uk-padding-remove.uk-position-top
+            div.uk-container.uk-text-center
+                h3.uk-text-uppercase=settings.title
+
+        div.uk-section.uk-section-small.uk-padding-small.uk-position-center(style="width:100%;")
+            div#date-time.uk-section.uk-section-xsmall.uk-text-center
+                //- include inc/clock.pug
+                div#date-time
+                    h1#time.uk-heading-hero time
+
+            div#date-time.uk-section.uk-section-small.uk-text-center
+                div#date date
+
+            div#date-time.uk-section.uk-section-small.uk-text-center
+
+                table.uk-table.uk-table-divider.uk-table-middle
+                    thead
+                        tr
+                            th.uk-text-left Prayer
+                            th.uk-text-center Adhan
+                            th.uk-text-center Iqamah
+                            th.uk-text-right.arabic صلاة
+
+
+                    tbody.uk-text-uppercase.uk-text-center(style="background:rgba(255,255,255,.5);")
+                        - i = 0;
+                        - names = [[settings.names[0],'الفجر'], [settings.names[1], 'الشروق'], [settings.names[2], 'الظهر'], [settings.names[3], 'العصر'], [settings.names[4], 'المغرب'], [settings.names[5], 'العشاء']]
+                        each val in names
+                            tr(id="row-"+i)
+                                td.uk-text-left= val[0]
+                                td(id='prayer-time-'+i)
+                                td(id='jamaah-time-'+i)
+                                td.uk-text-right.arabic= val[1]
+                                - i++
+
+
+                                
+            div.uk-section.uk-section-small.uk-text-center
+                span#pending-name.uk-text-right(style="margin-right:10px;") Prayer
+                span#timetoprayer.uk-text-left(style="margin-left:10px;") Countdown
+
+            hr
+
+            div.uk-section.uk-section-small.uk-text-center(style="border:2px solid #fff;")
+                - var bodytext = settings.body.split("\r\n");
+                - var announcements = settings.announcement.split("\r\n");
+
+                div#ticker.uk-text-center(style="width:100%;")
+                    ul.uk-list.uk-text-center
+                        each text in bodytext
+                            - var words = text.split(" ");
+                            - var arrays = [], size = 7;
+                            - while(words.length>0) {arrays.push(words.splice(0,size)); }
+                            each array in arrays
+                                - val = array.join(" ")
+                                li.arabic=val
+                        each announcement in announcements
+                            - var words = announcement.split(" ");
+                            - var arrays = [], size = 7;
+                            - while(words.length>0) {arrays.push(words.splice(0,size)); }
+                            each array in arrays
+                                - val = array.join(" ")
+                                li.next.arabic=val
+
+
+            div#ramadan.section.center
+                div.content
+
+
+
+            //- div.section.center
+            //-     div.content
+            //-         //- h3=settings.title
+            //-         div.arabic(style='white-space:pre-line;font-size:70%;')!= settings.body
+            //-         div.header.arabic(style='white-space: pre-line;font-size:90%;')!= settings.announcement
+
+
+
+        div.uk-section.uk-section-xsmall.uk-section-secondary.uk-text-center.uk-padding-remove.uk-position-bottom
+            div.uk-container.uk-text-center
+                h3.uk-text-uppercase=settings.jummuahlabel + " " + settings.jummuahtime
+
+
+
+
+    div.overlay.uk-position-cover.uk-overlay.uk-overlay-default.uk-flex.uk-flex-center.uk-flex-middle.uk-text-center Cover
+
+    div.overlay
+    script!= timedef
+

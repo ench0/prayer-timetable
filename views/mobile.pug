@@ -1,0 +1,69 @@
+extends layout
+
+block content
+
+    div.main
+
+        div.section
+            div.content.top.darkgrey-b.white-f.center Essalam Islamic Cultural Centre Rotterdam
+
+        div.section
+            div.content
+                include inc/clock.pug
+                div(class='ui sizer vertical segment' id='date-time')
+                    h1#time.center.white-f.nomargin time
+
+        div.section#date-time.center
+            div.content
+                div#date date
+
+        div.section
+            div.content
+                div.row.header
+                    div.column.left Prayer
+                    div.column.center Adhan
+                    div.column.center Iqamah
+                    div.column.arabic.right صلاة
+                each val in [['fajr','الفجر'], ['shurooq', 'الشروق'], ['dhuhr', 'الظهر'], ['asr', 'العصر'], ['maghrib', 'المغرب'], ['isha', 'العشاء']]
+                    div.row.line(id="row-"+val[0])
+                        div.column.left= val[0]
+                        div.column.center(id='prayer-time-'+val[0])
+                        div.column.center(id='jamaah-time-'+val[0])
+                        div.column.arabic.right= val[1]
+
+        div.section.center
+            div.content
+                span#pending-name Prayer
+                span#timetoprayer Countdown
+
+        - var hadiths = settings.body.split("\r\n");
+        - var announcements = settings.announcement.split("\r\n");
+
+
+        div#ramadan.section.center
+            div.content
+
+
+        div.section
+            div.content.bottom.darkgrey-b.white-f.center= "Vrijdag Gebed " + settings.jummuahtime
+
+    div.overlay
+
+    script!= timedef
+
+    script(src='/js/reload.js')
+    script(src='/js/moment.min.js')
+    script(src='/js/moment-timezone-with-data.js')
+    script(src='/js/moment-hijri.js')
+    script(src='/js/db/timetable.js')
+    script(src='/js/time.js')
+    script(src='/js/jquery.min.js')
+    script(src='/js/clock.js')
+    script(src='/js/script.js')
+
+    style(type="text/css").
+      #overlay {
+        background: rgba(0,0,0,0);
+        z-index: -9;
+        display: none;
+      }

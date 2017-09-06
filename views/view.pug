@@ -1,0 +1,97 @@
+extends layout_admin
+
+block content
+
+    div.uk-section-xsmall.uk-section-primary
+        div.uk-container.uk-text-center
+            h1=title
+
+    div.uk-section-xsmall.uk-section-muted
+        div.uk-container
+            if message
+                div.uk-alert-success(uk-alert)
+                    i(uk-icon="icon: info")
+                    a.uk-alert-close(uk-close)
+                    span &nbsp; &nbsp;
+                    | #{message}
+
+            - i = 0;
+            - names = ["fajr", "shurooq", "dhuhr", "asr", "maghrib", "isha"]
+            - jamaahmethods = (settings.jamaahmethods).split(",");
+            - jamaahoffsets = (settings.jamaahoffsets).split(",");
+
+
+            table.uk-table.uk-table-striped.uk-table-small.uk-table-middle
+                thead
+                    tr
+                        th Prayer
+                        th Adhan
+                        th.center Iqamah
+                        th.center Calculation method
+                        th.center Calculation offset
+
+
+                tbody   
+
+                    each val in time
+                        tr
+                            
+                            if i < 6
+
+                                td=names[i]
+                                td= value=(undefined===val ? '' : val.disp)
+                                - if(jamaahmethods[i]=="fixed") var jamaahdisp = jamaahoffsets[i]; else var jamaahdisp = val.jamaahdisp;
+                                td= value=(undefined===val ? '' : jamaahdisp)
+                                td
+                                    if jamaahmethods[i]=="beforenext"
+                                        span Before next
+                                    else if jamaahmethods[i]=="afterthis"
+                                        span After adhan
+                                    else if jamaahmethods[i]=="fixed"
+                                        span Fixed time
+                                    else
+                                        span
+                                - jamaahOffsetHour = (jamaahoffsets[i].split(":"))[0]
+                                - jamaahOffsetMinute = (jamaahoffsets[i].split(":"))[1]
+                                - if(jamaahOffsetMinute < 10) var minutepre = '0' + jamaahOffsetMinute; else var minutepre = jamaahOffsetMinute;
+                                - if(i==1) {minutepre = ""; divider = "";} else divider = ":"
+                                td= jamaahOffsetHour + divider + minutepre
+
+                            - i++
+
+
+            div
+                div.uk-margin.uk-heading-line.uk-text-center
+                    span Title
+                h3.uk-margin-remove= settings.title
+                div.uk-margin.uk-heading-line.uk-text-center
+                    span Text
+                p(style='white-space:pre-line;')= settings.body
+                div.uk-margin.uk-heading-line.uk-text-center
+                    span Announcement
+                h4.uk-margin-remove= settings.announcement
+                div.uk-margin.uk-heading-line.uk-text-center
+                    span Refresh message
+                p= settings.refreshmessage
+            
+            div.uk-margin.uk-heading-line.uk-text-center
+                    span Other settings
+
+            ul
+                li
+                    = "Screen refresh: " + settings.refresh + " minutes"
+                li
+                    = "Jummuah time / label: " + settings.jummuahtime + " / " + settings.jummuahlabel
+                li
+                    = "Hijri offset: " + settings.hijrioffset
+                li
+                    = "Join maghrib and isha: " + settings.join
+                li
+                    = "Frontend language: " + settings.language
+                li
+                    = "Prayer names: " + settings.names[0]+ " " + settings.names[1]+ " " + settings.names[2]+ " " + settings.names[3]+ " " + settings.names[4]+ " " + settings.names[5]
+                br
+
+                div.uk-section.uk-section-xsmall
+                    a.uk-button.uk-button-primary(href='/admin') Admin
+

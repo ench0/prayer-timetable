@@ -1,0 +1,220 @@
+extends layout_admin
+
+
+
+block content
+
+    div.uk-section-xsmall.uk-section-primary
+        div.uk-container.uk-text-center
+            h1=title
+
+    div.uk-section-xsmall.uk-section-muted
+        div.uk-container
+            if message
+                div.uk-alert-success(uk-alert)
+                    i(uk-icon="icon: info")
+                    a.uk-alert-close(uk-close)
+                    span &nbsp; &nbsp;
+                    | #{message}
+
+            form.uk-form-stacked(method='POST' action='')
+
+                if errors
+                    div.uk-alert-danger(uk-alert)
+                        i(uk-icon="icon: warning")
+                        a.uk-alert-close(uk-close)
+                        for error in errors
+                            span &nbsp; &nbsp;
+                            span!= error.msg
+
+
+
+
+                div.uk-section.uk-section-xsmall
+
+                    table.uk-table.uk-table-striped.uk-table-small.uk-table-middle
+                        thead
+                            tr
+                                th Prayer
+                                th Adhan
+                                th.center Iqamah
+                                th.center Calculation method
+                                th.center Calculation offset
+
+
+                        tbody
+                            - i = 0;
+                            - names = ["fajr", "shurooq", "dhuhr", "asr", "maghrib", "isha"]
+                            - jamaahmethods = (settings.jamaahmethods).split(",");
+                            - jamaahoffsets = (settings.jamaahoffsets).split(",");
+                            
+                            each val in time
+                                if i < 6
+                                    tr
+                                        td= names[i]
+                                        td= value=(undefined===val ? '' : val.disp)
+                                        - if(jamaahmethods[i]=="fixed") var jamaahdisp = jamaahoffsets[i]; else var jamaahdisp = val.jamaahdisp;
+                                        td= value=(undefined===val ? '' : jamaahdisp)
+                                        td
+                                            if jamaahmethods[i]
+                                                select.uk-select(name='jamaahmethod'+names[i])
+                                                    each method in [['fixed','Fixed'],['afterthis','After adhan'],['beforenext','Before next']]
+                                                        if method[0] == jamaahmethods[i]
+                                                            option(value=method[0] selected='selected')= method[1]
+                                                        else
+                                                            option(value=method[0])= method[1]
+                                        td
+                                            - jamaahOffsetHour = (jamaahoffsets[i].split(":"))[0]
+                                            - jamaahOffsetMinute = (jamaahoffsets[i].split(":"))[1]
+                                            if jamaahOffsetHour
+                                                select.uk-select(class="uk-width-1-2@s" name='jamaahoffset'+names[i]+'hour')
+                                                    each hour in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
+                                                        if hour == jamaahOffsetHour
+                                                            option(selected='selected')=hour
+                                                        else
+                                                            option= hour
+                                                select.uk-select(class="uk-width-1-2@s" name='jamaahoffset'+names[i]+'minute')
+                                                    each minute in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59]
+                                                        - if(minute < 10) minutepre = '0' + minute; else minutepre = minute;
+                                                        if minute == jamaahOffsetMinute
+                                                            option(value=minute selected='selected')= minutepre
+                                                        else
+                                                            option(value=minute)= minutepre
+                                - i++ 
+
+
+
+
+                div.uk-section.uk-section-xsmall
+
+                    div.uk-margin
+                        label.uk-form-label(for='title') Title:
+                        input.uk-input(type='text', placeholder='Organisation title' name='title' value=(undefined===body.title ? settings.title : body.title) ) 
+
+                    div.uk-margin
+                        label.uk-form-label(for='body') Text body:
+                        textarea.uk-textarea(placeholder='Text body' name='body' maxlength='500' wrap='hard' rows='9')=(undefined===body.body ? settings.body : body.body)
+
+                    div.uk-margin
+                        label.uk-form-label(for='announcement') Announcement:
+                        textarea.uk-textarea(placeholder='Announcement' name='announcement' maxlength='100' wrap='hard' rows='5')=(undefined===body.announcement ? settings.announcement : body.announcement)
+
+                    div.uk-margin
+                        label.uk-form-label(for='refreshmessage') Refresh message:
+                        input.uk-input(type='text', placeholder='Refresh message' name='refreshmessage' value=(undefined===body.refreshmessage ? settings.refreshmessage : body.refreshmessage) ) 
+
+                    div.uk-margin
+                        label.uk-form-label(for='refresh') Refresh timeout:
+                        input.uk-range(type='range', name='refresh' min='30' max='180' step='30' value=(undefined===body.refresh ? settings.refresh : body.refresh) )
+                        br
+                        span 030-060-090-120-150-180
+
+                div.uk-section.uk-section-xsmall
+
+                    div.uk-margin
+                        label.uk-form-label(for='jummuahtime') Jummuah time:
+                        select.uk-select(class="uk-width-1-4@s" name='jummuahtimehour') 
+                            each hour in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
+                                if hour == body.jummuahtimehour
+                                    option(selected='selected')=hour
+                                else if hour == ((settings.jummuahtime).split(":"))[0]
+                                    option(selected='selected')=hour
+                                else
+                                    option= hour
+                        select.uk-select(class="uk-width-1-4@s" name='jummuahtimeminute') 
+                            each minute in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59]
+                                - if(minute < 10) minutepre = '0' + minute; else minutepre = minute;
+                                if minute == body.jummuahtimeminute
+                                    option(value=minute selected='selected')= minutepre
+                                else if minute == ((settings.jummuahtime).split(":"))[1]
+                                    option(value=minute selected='selected')= minutepre
+                                else
+                                    option(value=minute)= minutepre
+
+
+                    div.uk-margin
+                        label.uk-form-label(for='jummuahlabel') Jummuah label:
+                        input.uk-input(type='text', placeholder='Jummuah label' name='jummuahlabel' value=(undefined===body.jummuahlabel ? settings.jummuahlabel : body.jummuahlabel))
+
+
+                    div.uk-margin
+                        label.uk-form-label(for='names[0]') Prayer names:
+
+                        input.uk-input(class="uk-width-1-6@s" type='text', placeholder='Fajr' name='name0' value=(undefined===settings.names[0] ? settings.names[0] : settings.names[0]))
+
+                        input.uk-input(class="uk-width-1-6@s" type='text', placeholder='Shurooq' name='name1' value=(undefined===settings.names[0] ? settings.names[0] : settings.names[1]))
+
+                        input.uk-input(class="uk-width-1-6@s" type='text', placeholder='Dhuhr' name='name2' value=(undefined===settings.names[0] ? settings.names[0] : settings.names[2]))
+
+                        input.uk-input(class="uk-width-1-6@s" type='text', placeholder='Asr' name='name3' value=(undefined===settings.names[0] ? settings.names[0] : settings.names[3]))
+
+                        input.uk-input(class="uk-width-1-6@s" type='text', placeholder='Maghrib' name='name4' value=(undefined===settings.names[0] ? settings.names[0] : settings.names[4]))
+
+                        input.uk-input(class="uk-width-1-6@s" type='text', placeholder='Isha' name='name5' value=(undefined===settings.names[0] ? settings.names[0] : settings.names[5]))
+
+
+
+
+                    div.uk-margin
+                        label.uk-form-label(for='hijrioffset') Hijri offset:
+                        select.uk-select(class="uk-width-1-4@s" name='hijrioffset') 
+                            each adjust in [-2,-1,0,1,2]
+                                if adjust == body.hijrioffset
+                                    option(selected='selected')=adjust
+                                if adjust == settings.hijrioffset
+                                    option(selected='selected')=adjust
+                                else
+                                    option= adjust
+
+                    div.uk-margin
+                        label.uk-form-label(for='join') Join maghrib and isha:
+                        //- span= settings.join
+                        select.uk-select(class="uk-width-1-4@s" name='join') 
+                            each adjust in [[0, "off"], [1, "on"]]
+                                if adjust[1] == body.join
+                                    option(selected='selected')=adjust[1]
+                                if adjust[1] == settings.join
+                                    option(selected='selected')=adjust[1]
+                                else
+                                    option= adjust[1]
+
+                    div.uk-margin
+                        label.uk-form-label(for='language') Frontend language:
+                        select.uk-select(class="uk-width-1-4@s" name='language') 
+                            each set in [[0, "en"], [1, "nl"]]
+                                if set[1] == body.language
+                                    option(selected='selected')=set[1]
+                                if set[1] == settings.language
+                                    option(selected='selected')=set[1]
+                                else
+                                    option= set[1]
+
+                    div.uk-margin
+                        label.uk-form-label(for='themecol') Colour theme:
+                        select.uk-select(class="uk-width-1-4@s" name='themecol') 
+                            each colour in [["#cee3ed", "blue"], ["#daeae4", "green"], ["#f9c998", "orange"], ["#ccc", "grey"], ["#fce0e0", "red"]]
+                                if colour[0] == body.themecol
+                                    option(selected='selected' value=colour[0])=colour[1]
+                                if colour[0] == settings.themecol
+                                    option(selected='selected' value=colour[0])=colour[1]
+                                else
+                                    option(value=colour[0])= colour[1]
+
+                        select.uk-select(class="uk-width-1-4@s" name='themeimg') 
+                            each img in [["/img/marble.png", "marble"], ["/img/morocco.png", "morocco"], ["/img/leaves.png", "leaves"], ["/img/dots.png", "dots"], ["/img/paper.png", "paper"]]
+                                if img[0] == body.themeimg
+                                    option(selected='selected' value=img[0])=img[1]
+                                if img[0] == settings.themeimg
+                                    option(selected='selected' value=img[0])=img[1]
+                                else
+                                    option(value=img[0])= img[1]
+
+
+                div.uk-section.uk-section-xsmall
+                    button.uk-button.uk-button-primary(type='submit') Submit
+
+
+    div.uk-section-primary
+        div.uk-container.uk-text-center
+            div.link.list
+            a.item(href="/update") Update
