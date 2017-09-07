@@ -1,6 +1,8 @@
-extends layout
+extends layout_index
 
 block content
-  h1= title
-  h2(class="ui large header") Assalamu alaikum!
-  p(class="ui dividing header") Welcome to #{title}
+    div.uk-section.uk-section-primary(style="background:"+settings.themecol+" url(\""+settings.themeimg+"\") 50%" uk-height-viewport="offset-top: true")
+
+        div.uk-section.uk-section-small.uk-padding-small.uk-position-center(style="width:100%;")
+            div.uk-container.uk-text-center
+                h1.uk-heading-hero.uk-text-uppercase=title
