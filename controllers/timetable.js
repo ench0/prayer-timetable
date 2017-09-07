@@ -1,4 +1,5 @@
-var jsonfile = require('jsonfile')
-var file = __dirname+'/timetable.json'
+var jsonfile = require('jsonfile');
+const settings = require('../controllers/settings');
+var file = __dirname+settings.city;
 
 module.exports = jsonfile.readFileSync(file)

@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const settings = require('../controllers/settings');
+const timetable = require('../controllers/timetable');
 const admin = require('../controllers/admin');
 const update = require('../controllers/update');
-const timedef = "var settings="+JSON.stringify(settings);
+const timetabledef = "var timetable="+JSON.stringify(timetable);
+const settingsdef = "var settings="+JSON.stringify(settings);
 
 
 const auth = require('http-auth');
@@ -18,10 +20,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'ICCI Timetable' });
 });
 router.get('/timetable', function(req, res, next) {
-  res.render('timetable', { title: 'Timetable', settings: settings, timedef: timedef });
+  res.render('timetable', { title: 'Timetable', settings: settings, timetabledef: timetabledef, settingsdef: settingsdef });
 });
 router.get('/mobile', function(req, res, next) {
-  res.render('mobile', { title: 'Timetable', settings: settings, timedef: timedef });
+  res.render('mobile', { title: 'Timetable', settings: settings, timetabledef: timetabledef, settingsdef: settingsdef });
 });
 
 

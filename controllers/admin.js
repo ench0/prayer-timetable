@@ -41,22 +41,27 @@ exports.admin_post = function(req, res, next) {
     else {
         var message = "Sucess!";
         var settingsnew = {
-                "title":req.body.title,
-                "refresh":req.body.refresh,
-                "hijrioffset":req.body.hijrioffset,
-                "body":body,
-                "announcement":req.body.announcement,
-                "jummuahtime": req.body.jummuahtimehour+':'+req.body.jummuahtimeminute,
-                "join": req.body.join,
-                "jamaahmethods":req.body.jamaahmethodfajr+",,"+req.body.jamaahmethoddhuhr+","+req.body.jamaahmethodasr+","+req.body.jamaahmethodmaghrib+","+req.body.jamaahmethodisha,
-                "jamaahoffsets":req.body.jamaahoffsetfajrhour+":"+req.body.jamaahoffsetfajrminute+",,"+req.body.jamaahoffsetdhuhrhour+":"+req.body.jamaahoffsetdhuhrminute+","+req.body.jamaahoffsetasrhour+":"+req.body.jamaahoffsetasrminute+","+req.body.jamaahoffsetmaghribhour+":"+req.body.jamaahoffsetmaghribminute+","+req.body.jamaahoffsetishahour+":"+req.body.jamaahoffsetishaminute,
-                "refreshmessage":req.body.refreshmessage,
-                "language":req.body.language,
-                "themecol":req.body.themecol,
-                "themeimg":req.body.themeimg,
-                "jummuahlabel":req.body.jummuahlabel,
-                "names":[req.body.name0,req.body.name1,req.body.name2,req.body.name3,req.body.name4,req.body.name5]
-            };
+            "title":req.body.title,
+            "city":req.body.city,
+            "refresh":req.body.refresh,
+            "hijrioffset":req.body.hijrioffset,
+            "body":body,
+            "announcement":req.body.announcement,
+            "jummuahtime": req.body.jummuahtimehour+':'+req.body.jummuahtimeminute,
+            "join": req.body.join,
+            "jamaahmethods":req.body.jamaahmethodfajr+",,"+req.body.jamaahmethoddhuhr+","+req.body.jamaahmethodasr+","+req.body.jamaahmethodmaghrib+","+req.body.jamaahmethodisha,
+            "jamaahoffsets":req.body.jamaahoffsetfajrhour+":"+req.body.jamaahoffsetfajrminute+",,"+req.body.jamaahoffsetdhuhrhour+":"+req.body.jamaahoffsetdhuhrminute+","+req.body.jamaahoffsetasrhour+":"+req.body.jamaahoffsetasrminute+","+req.body.jamaahoffsetmaghribhour+":"+req.body.jamaahoffsetmaghribminute+","+req.body.jamaahoffsetishahour+":"+req.body.jamaahoffsetishaminute,
+            "refreshmessage":req.body.refreshmessage,
+            "language":req.body.language,
+            "themecol":req.body.themecol,
+            "themeimg":req.body.themeimg,
+            "jummuahlabel":req.body.jummuahlabel,
+            "prayerlabel":req.body.prayerlabel,
+            "adhanlabel":req.body.adhanlabel,
+            "iqamahlabel":req.body.iqamahlabel,
+            "preparelabel":req.body.preparelabel,
+            "names":[req.body.name0,req.body.name1,req.body.name2,req.body.name3,req.body.name4,req.body.name5]
+        };
         
         var file = __dirname+'/settings.json'
         
@@ -79,8 +84,8 @@ exports.admin_post = function(req, res, next) {
         function puts(error, stdout, stderr) { console.log(stdout) }
         exec("pm2 reload www", puts);
 
-        // res.redirect("/view/?message=Sucess!");
-        res.render('view', { title: 'View Timetable!', settings: settings, time: time, message: "Success!" });
+        res.redirect("/view/?message=Success! Please refresh this page to see the updated version.");
+        // res.render('view', { title: 'View Timetable!', settings: settings, time: time, message: "Success! Please refresh this page to see the updated version." });
         
     }
 };

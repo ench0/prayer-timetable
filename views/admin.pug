@@ -99,15 +99,28 @@ block content
                         label.uk-form-label(for='announcement') Announcement:
                         textarea.uk-textarea(placeholder='Announcement' name='announcement' maxlength='100' wrap='hard' rows='5')=(undefined===body.announcement ? settings.announcement : body.announcement)
 
-                    div.uk-margin
-                        label.uk-form-label(for='refreshmessage') Refresh message:
-                        input.uk-input(type='text', placeholder='Refresh message' name='refreshmessage' value=(undefined===body.refreshmessage ? settings.refreshmessage : body.refreshmessage) ) 
 
                     div.uk-margin
-                        label.uk-form-label(for='refresh') Refresh timeout:
-                        input.uk-range(type='range', name='refresh' min='30' max='180' step='30' value=(undefined===body.refresh ? settings.refresh : body.refresh) )
+                        label.uk-form-label(for='refreshmessage') Refresh message:
+                        div(uk-grid)
+                            div.uk-width-1-2
+                                input.uk-input(type='text', placeholder='Refresh message' name='refreshmessage' value=(undefined===body.refreshmessage ? settings.refreshmessage : body.refreshmessage) ) 
+                            div.uk-width-1-3
+                                input.uk-range(type='range', name='refresh' min='30' max='180' step='30' list="tickmarks" id="rangeInput" oninput="output.value = rangeInput.value" value=(undefined===body.refresh ? settings.refresh : body.refresh) )
+                                datalist#tickmarks
+                                    option 30
+                                    option 60
+                                    option 90
+                                    option 120
+                                    option 150
+                                    option 180
+                            div.uk-width-1-6
+                                output#output(for="rangeInput")= settings.refresh
+
+
+
                         br
-                        span 030-060-090-120-150-180
+                        //- span 030-060-090-120-150-180
 
                 div.uk-section.uk-section-xsmall
 
@@ -134,25 +147,34 @@ block content
 
                     div.uk-margin
                         label.uk-form-label(for='jummuahlabel') Jummuah label:
-                        input.uk-input(type='text', placeholder='Jummuah label' name='jummuahlabel' value=(undefined===body.jummuahlabel ? settings.jummuahlabel : body.jummuahlabel))
+                        input.uk-input(class='uk-width-1-6@s' type='text', placeholder='Jummuah label' name='jummuahlabel' value=(undefined===body.jummuahlabel ? settings.jummuahlabel : body.jummuahlabel))
+
+                    div.uk-margin
+                        label.uk-form-label(for='titlelabels') Title labels:
+                        input.uk-input(class='uk-width-1-6@s' type='text', placeholder='Prayer label' name='prayerlabel' value=(undefined===body.prayerlabel ? settings.prayerlabel : body.prayerlabel))
+                        input.uk-input(class='uk-width-1-6@s' type='text', placeholder='Adhan label' name='adhanlabel' value=(undefined===body.adhanlabel ? settings.adhanlabel : body.adhanlabel))
+                        input.uk-input(class='uk-width-1-6@s' type='text', placeholder='Iqamah label' name='iqamahlabel' value=(undefined===body.iqamahlabel ? settings.iqamahlabel : body.iqamahlabel))
+                        
 
 
                     div.uk-margin
-                        label.uk-form-label(for='names[0]') Prayer names:
+                        label.uk-form-label(for='names') Prayer names:
 
-                        input.uk-input(class="uk-width-1-6@s" type='text', placeholder='Fajr' name='name0' value=(undefined===settings.names[0] ? settings.names[0] : settings.names[0]))
+                        input.uk-input(class='uk-width-1-6@s' type='text', placeholder='Fajr' name='name0' value=(undefined===settings.names[0] ? settings.names[0] : settings.names[0]))
 
-                        input.uk-input(class="uk-width-1-6@s" type='text', placeholder='Shurooq' name='name1' value=(undefined===settings.names[0] ? settings.names[0] : settings.names[1]))
+                        input.uk-input(class='uk-width-1-6@s' type='text', placeholder='Shurooq' name='name1' value=(undefined===settings.names[0] ? settings.names[0] : settings.names[1]))
 
-                        input.uk-input(class="uk-width-1-6@s" type='text', placeholder='Dhuhr' name='name2' value=(undefined===settings.names[0] ? settings.names[0] : settings.names[2]))
+                        input.uk-input(class='uk-width-1-6@s' type='text', placeholder='Dhuhr' name='name2' value=(undefined===settings.names[0] ? settings.names[0] : settings.names[2]))
 
-                        input.uk-input(class="uk-width-1-6@s" type='text', placeholder='Asr' name='name3' value=(undefined===settings.names[0] ? settings.names[0] : settings.names[3]))
+                        input.uk-input(class='uk-width-1-6@s' type='text', placeholder='Asr' name='name3' value=(undefined===settings.names[0] ? settings.names[0] : settings.names[3]))
 
-                        input.uk-input(class="uk-width-1-6@s" type='text', placeholder='Maghrib' name='name4' value=(undefined===settings.names[0] ? settings.names[0] : settings.names[4]))
+                        input.uk-input(class='uk-width-1-6@s' type='text', placeholder='Maghrib' name='name4' value=(undefined===settings.names[0] ? settings.names[0] : settings.names[4]))
 
-                        input.uk-input(class="uk-width-1-6@s" type='text', placeholder='Isha' name='name5' value=(undefined===settings.names[0] ? settings.names[0] : settings.names[5]))
+                        input.uk-input(class='uk-width-1-6@s' type='text', placeholder='Isha' name='name5' value=(undefined===settings.names[0] ? settings.names[0] : settings.names[5]))
 
-
+                    div.uk-margin
+                        label.uk-form-label(for='preparelabel') Prepare label:
+                        input.uk-input(class='uk-width-1-6@s' type='text', placeholder='Prepare label' name='preparelabel' value=(undefined===body.preparelabel ? settings.preparelabel : body.preparelabel))
 
 
                     div.uk-margin
@@ -188,6 +210,18 @@ block content
                                     option(selected='selected')=set[1]
                                 else
                                     option= set[1]
+
+                    div.uk-margin
+                        label.uk-form-label(for='city') City:
+                        select.uk-select(class="uk-width-1-4@s" name='city') 
+                            each choice in [["/dublin.json", "Dublin"], ["/rotterdam.json", "Rotterdam"]]
+                                if choice[0] == body.city
+                                    option(selected='selected' value=choice[0])=choice[1]
+                                if choice[0] == settings.city
+                                    option(selected='selected' value=choice[0])=choice[1]
+                                else
+                                    option(value=choice[0])= choice[1]
+
 
                     div.uk-margin
                         label.uk-form-label(for='themecol') Colour theme:

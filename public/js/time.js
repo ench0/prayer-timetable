@@ -82,6 +82,7 @@ if (settings.language == "nl") {
     moment.locale('nl');
 }
 
+
 (function(){
 
 var tomorrow = 0;
@@ -256,7 +257,7 @@ var timeDisp = (function() {
         if (def[8]['num'] == 5 && tomorrow == 1) var starttime = moment(); else if (def[8]['num'] == 5 && tomorrow == 0) var starttime = def[8].time; else var starttime = def[8].time;
         if ((moment().add(tomorrow, 'day')).isBetween(starttime, def[8].jamaahtime))
         {
-        document.getElementById("pending-name").innerHTML = "Prepare for "+ def[8].name + " Jamaah";
+        document.getElementById("pending-name").innerHTML = settings.preparelabel + " " + def[8].name + settings.prayerlabel;
             document.getElementById("timetoprayer").innerHTML = timeToJamaah.hours + ':' + timeToJamaah.minutes + ':' + timeToJamaah.seconds;
         }
         if ((moment().add(tomorrow, 'day')).isBetween(moment().startOf('day'), moment().startOf('day').add(5, 's')))
@@ -312,9 +313,15 @@ var timeDisp = (function() {
     document.getElementById("ramadan").innerHTML = "<div class='content'>"+moment.duration(moment().endOf('imonth').diff(moment())).humanize()+" until Ramadan</div>";
   }
 
-	setTimeout(function(){timeDisp()}, 1000);
+    // setTimeout(function(){timeDisp()}, 1000);
+
 });
-timeDisp();
+
+// timeDisp();
+
+var myVar = setInterval(function(){ timeDisp() }, 1000);
+
+
 
 function appendZero(unit) {
   if (unit < 10) var unit = '0'+unit;

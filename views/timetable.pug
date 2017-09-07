@@ -27,9 +27,9 @@ block content
                 table.uk-table.uk-table-divider.uk-table-middle
                     thead
                         tr
-                            th.uk-text-left Prayer
-                            th.uk-text-center Adhan
-                            th.uk-text-center Iqamah
+                            th.uk-text-left= settings.prayerlabel
+                            th.uk-text-center= settings.adhanlabel
+                            th.uk-text-center= settings.iqamahlabel
                             th.uk-text-right.arabic صلاة
 
 
@@ -71,7 +71,8 @@ block content
                             - while(words.length>0) {arrays.push(words.splice(0,size)); }
                             each array in arrays
                                 - val = array.join(" ")
-                                li.next.arabic=val
+                                li.arabic
+                                    strong=val
 
             hr
 
@@ -99,5 +100,6 @@ block content
     div.overlay.uk-position-cover.uk-overlay.uk-overlay-default.uk-flex.uk-flex-center.uk-flex-middle.uk-text-center Cover
 
     div.overlay
-    script!= timedef
+    script!= settingsdef
+    script!= timetabledef
 
