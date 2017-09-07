@@ -18,16 +18,7 @@ html(lang="nl")
         body, .uk-table th {
             font-family: "Open Sans",'Helvetica Neue',Arial,Helvetica,sans-serif;
             font-size: 48px;
-
         }
-        h1, h2, h3, h4, h5 {
-            font-family: "Open Sans",'Helvetica Neue',Arial,Helvetica,sans-serif;
-        }
-        .arabic, .uk-table th.arabic {
-            font-family: "Changa",'Helvetica Neue',Arial,Helvetica,sans-serif;
-            font-weight: 200;/*200 500*/
-        }
-
 
   body(style="overflow: hidden;")
     block content
@@ -39,6 +30,8 @@ html(lang="nl")
     script(src='/js/moment.min.js')
     script(src='/js/moment-timezone-with-data.js')
     script(src='/js/moment-hijri.js')
+    script!= settingsdef
+    script!= timetabledef
     //- script(src='/js/db/timetable.js')
     script(src='/js/time.js')
     script(src='/js/refresh.js')

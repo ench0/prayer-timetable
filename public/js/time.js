@@ -257,7 +257,7 @@ var timeDisp = (function() {
         if (def[8]['num'] == 5 && tomorrow == 1) var starttime = moment(); else if (def[8]['num'] == 5 && tomorrow == 0) var starttime = def[8].time; else var starttime = def[8].time;
         if ((moment().add(tomorrow, 'day')).isBetween(starttime, def[8].jamaahtime))
         {
-        document.getElementById("pending-name").innerHTML = settings.preparelabel + " " + def[8].name + settings.prayerlabel;
+        document.getElementById("pending-name").innerHTML = settings.preparelabel + " " + def[8].name + " " + settings.prayerlabel;
             document.getElementById("timetoprayer").innerHTML = timeToJamaah.hours + ':' + timeToJamaah.minutes + ':' + timeToJamaah.seconds;
         }
         if ((moment().add(tomorrow, 'day')).isBetween(moment().startOf('day'), moment().startOf('day').add(5, 's')))

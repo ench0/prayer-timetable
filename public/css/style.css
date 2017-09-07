@@ -1,6 +1,18 @@
 html {
     color: #333;
 }
+
+body, .uk-table th {
+    font-family: "Open Sans",'Helvetica Neue',Arial,Helvetica,sans-serif;
+}
+h1, h2, h3, h4, h5 {
+    font-family: "Open Sans",'Helvetica Neue',Arial,Helvetica,sans-serif;
+}
+.arabic, .uk-table th.arabic {
+    font-family: "Changa",'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-weight: 200;/*200 500*/
+}
+
 /*refresh*/
 #refresh {
     z-index: 9999;
