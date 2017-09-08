@@ -40,9 +40,3 @@ router.get('/reboot', auth.connect(basic), update.reboot);
 router.get('/view', admin.view);
 
 module.exports = router;
-
-
-
-// app.get('/admin', auth.connect(basic), (req, res) => {
-//     res.send(`Hello from admin area - ${req.user}!`);
-// });
