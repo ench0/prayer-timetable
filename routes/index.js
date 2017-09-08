@@ -35,6 +35,8 @@ router.post('/admin', auth.connect(basic), admin.admin_post);
 
 router.get('/update', auth.connect(basic), update.github);
 
+router.get('/reboot', auth.connect(basic), update.reboot);
+
 router.get('/view', admin.view);
 
 module.exports = router;

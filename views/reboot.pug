@@ -1,0 +1,18 @@
+extends layout_admin
+
+
+
+block content
+
+    div.uk-section-xsmall.uk-section-primary
+        div.uk-container.uk-text-center
+            h1=title
+
+            if message
+            div.message
+                i(uk-icon="icon: refresh")
+                i.inbox.icon
+                div.header #{message}
+                br
+                div
+                    a(href="/admin") Back to admin area
