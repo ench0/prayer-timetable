@@ -5,7 +5,7 @@
  * 		@license Used momentjs library for time manipulation, rest of code free for distribution provided this info is included.
  */
 'use strict';
-
+let city
 if (settings.language == "nl") {
     const monthsShortWithDots = 'jan._feb._mrt._apr._mei_jun._jul._aug._sep._okt._nov._dec.'.split('_');
     const monthsShortWithoutDots = 'jan_feb_mrt_apr_mei_jun_jul_aug_sep_okt_nov_dec'.split('_');
@@ -81,9 +81,9 @@ if (settings.language == "nl") {
     });
 
     moment.locale('nl');
-    let city = "Europe/Amsterdam"
+    city = "Europe/Amsterdam"
 }
-else let city = "Europe/Dublin"
+else city = "Europe/Dublin"
 
 (function(){
 
