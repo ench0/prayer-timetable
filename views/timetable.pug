@@ -7,23 +7,23 @@ block content
         div#message-text.black
         div.fadeout
 
-    div.uk-section(style="background:"+settings.themecol+" url(\""+settings.themeimg+"\") 50%" uk-height-viewport="offset-top: true")
+    //- TOP BAR
+    div.uk-section.uk-section-small.uk-section-secondary.uk-text-center.uk-padding-remove.uk-position-top
+        div.uk-container.uk-text-center
+            h2.uk-text-uppercase=settings.title
 
-        div.uk-section.uk-section-small.uk-section-secondary.uk-text-center.uk-padding-remove.uk-position-top
-            div.uk-container.uk-text-center
-                h2.uk-text-uppercase=settings.title
+    //- TABLE
+    table.uk-height-viewport.uk-width-1.uk-table.uk-table-divider.uk-table-middle.uk-margin-remove(uk-height-viewport="offset-top: true;offset-bottom: true;" style="background:"+settings.themecol+" url(\""+settings.themeimg+"\") 50%;margin:40px 0!important;")
+        tr.uk-card.uk-card-body.uk-text-center
+            td
+                h1(style="padding-top:80px;")#time.uk-heading-hero time
+        tr.uk-card.uk-card-body.uk-text-center
+            td#date date
 
-        div.uk-section.uk-section-small.uk-padding-large.uk-position-center(style="width:100%;")
-            div#date-time.uk-section.uk-section-xsmall.uk-text-center.uk-margin-top
-                //- include inc/clock.pug
-                div#date-time
-                    h1#time.uk-heading-hero time
+        //-         //- include inc/clock.pug
 
-            div#date-time.uk-section.uk-section-small.uk-text-center.uk-text-uppercase
-                div#date date
-
-            div#date-time.uk-section.uk-section-small.uk-text-center
-
+        tr.uk-card.uk-card-body.uk-text-center
+            td(style="padding:0 30px!important;margin:0!important;")
                 table.uk-table.uk-table-divider.uk-table-middle
                     thead
                         tr
@@ -44,19 +44,21 @@ block content
                                 td.uk-text-right.arabic= val[1]
                                 - i++
 
-
+        tr.uk-card.uk-card-body.uk-text-center
+            td
+                div
+                    span#pending-name.uk-text-right(style="margin-right:10px;") Prayer
+                    span#timetoprayer.uk-text-left(style="margin-left:10px;") Countdown
                                 
-            div.uk-section.uk-section-small.uk-text-center
-                span#pending-name.uk-text-right(style="margin-right:10px;") Prayer
-                span#timetoprayer.uk-text-left(style="margin-left:10px;") Countdown
+        //- tr
 
-            hr
 
-            div.uk-section.uk-section-small.uk-text-center
-                - var bodytext = settings.body.split("\r\n");
-                - var announcements = settings.announcement.split("\r\n");
+        tr.uk-card.uk-card-body.uk-text-center
+            - var bodytext = settings.body.split("\r\n");
+            - var announcements = settings.announcement.split("\r\n");
 
-                div#ticker.uk-text-center(style="width:100%;")
+            td
+                div#ticker.uk-text-center(style="width:100%;padding-bottom:40px;")
                     ul.uk-list.uk-text-center
                         each text in bodytext
                             - var words = text.split(" ");
@@ -74,21 +76,19 @@ block content
                                 li.arabic
                                     strong=val
 
-            hr
 
 
-        - if(((settings.jummuahtime).split(":"))[1] < 10) var jummuahtime = ((settings.jummuahtime).split(":"))[0] + ": 0" + ((settings.jummuahtime).split(":"))[1]; else var jummuahtime = settings.jummuahtime;
+    //- BOTTOM BAR
+    - if(((settings.jummuahtime).split(":"))[1] < 10) var jummuahtime = ((settings.jummuahtime).split(":"))[0] + ": 0" + ((settings.jummuahtime).split(":"))[1]; else var jummuahtime = settings.jummuahtime;
 
-        div.uk-section.uk-section-xsmall.uk-section-secondary.uk-text-center.uk-padding-remove.uk-position-bottom
-            div.uk-container.uk-text-center
-                h2.uk-text-uppercase=settings.jummuahlabel + " " + jummuahtime
-                    | 
-                    span#ramadan
+    div.uk-section.uk-section-xsmall.uk-section-secondary.uk-text-center.uk-padding-remove.uk-position-bottom
+        div.uk-container.uk-text-center
+            h2.uk-text-uppercase=settings.jummuahlabel + " " + jummuahtime
+                | 
+                span#ramadan
 
 
-    div.overlay.uk-position-cover.uk-overlay.uk-overlay-default.uk-flex.uk-flex-center.uk-flex-middle.uk-text-center &nbsp;
-
-    div.overlay
+    div#overlay.uk-position-cover.uk-overlay.uk-overlay-default.uk-flex.uk-flex-center.uk-flex-middle.uk-text-center &nbsp;
 
 block scripts
     script(src='/js/refresh.js')

@@ -281,34 +281,40 @@ const timeDisp = (function() {
 
   const jummuahtime = (settings.jummuahtime).split(":");
 
-  // Taraweeh Prayer
-  if ( (hijriMonth == '9') &&
-       ((moment().isBetween(moment({hour: '0', minute: '00'}), moment({hour: '0', minute: '35'}))) ||
-       (moment().isBetween(moment({hour: '23', minute: '15'}), moment({hour: '23', minute: '59', second: '59'}))))
-      //  (((moment().isBetween(moment({hour: def.isha.jamaahtime.format('H'), minute: def.isha.jamaahtime.format('m')}), moment().endOf('day').add(35, 'minutes')))))
-  ) {
-    //   console.log("ramadan time")    
-	  document.getElementsByClassName("overlay")[0].style = "background:rgba(0,0,0,.85);z-index:1000;";
-	  document.getElementsByClassName("overlay")[0].innerHTML = "Taraweeh Prayer<br/>"+moment().format('iDD iMMMM iYYYY')+"<br/>"+moment().format('DD MMMM YYYY');
-    // document.getElementById('overlay').getElementsByTagName('div').innerHTML = "dd"
-  }
-  // Friday Prayer
-  else if ( (moment().format("d") == '5') &&
-       (moment().isBetween(moment({hour: jummuahtime[0], minute: jummuahtime[1]}), moment({hour: jummuahtime[0], minute: [jummuahtime[1]]}).add(1, 'h')))
-  ) {
-    //   console.log("jummuah time")    
-	  document.getElementsByClassName("overlay")[0].style = "background:rgba(0,0,0,.85);z-index:1000;";
-	  document.getElementsByClassName("overlay")[0].innerHTML = settings.jummuahlabel+"<br/>"+moment().format('iDD iMMMM iYYYY')+"<br/>"+moment().format('DD MMMM YYYY');
-  }
-  else {
-    // console.log("not the time")
-    document.getElementsByClassName("overlay")[0].style = "background: rgba(0,0,0,0);z-index:-9";
-	  document.getElementsByClassName("overlay")[0].textContent = "";
+  // OVERLAYS
+  if (document.getElementById("overlay")) {
+  
+    // Taraweeh Prayer
+    if ( (hijriMonth == '9') &&
+        ((moment().isBetween(moment({hour: '0', minute: '00'}), moment({hour: '0', minute: '35'}))) ||
+        (moment().isBetween(moment({hour: '23', minute: '15'}), moment({hour: '23', minute: '59', second: '59'}))))
+        //  (((moment().isBetween(moment({hour: def.isha.jamaahtime.format('H'), minute: def.isha.jamaahtime.format('m')}), moment().endOf('day').add(35, 'minutes')))))
+    ) {
+      //   console.log("ramadan time")    
+      document.getElementById("overlay").style = "background:rgba(0,0,0,.85);z-index:1000;";
+      document.getElementById("overlay").innerHTML = "Taraweeh Prayer<br/>"+moment().format('iDD iMMMM iYYYY')+"<br/>"+moment().format('DD MMMM YYYY');
+      // document.getElementById('overlay').getElementsByTagName('div').innerHTML = "dd"
+    }
+    // Friday Prayer
+    else if ( (moment().format("d") == '5') &&
+        (moment().isBetween(moment({hour: jummuahtime[0], minute: jummuahtime[1]}), moment({hour: jummuahtime[0], minute: [jummuahtime[1]]}).add(1, 'h')))
+    ) {
+      //   console.log("jummuah time")    
+      document.getElementById("overlay").style = "background:rgba(0,0,0,.85);z-index:1000;";
+      document.getElementById("overlay").innerHTML = settings.jummuahlabel+"<br/>"+moment().format('iDD iMMMM iYYYY')+"<br/>"+moment().format('DD MMMM YYYY');
+    }
+    else {
+      // console.log("not the time")
+      document.getElementById("overlay").style = "background: rgba(0,0,0,0);z-index:-9";
+      document.getElementById("overlay").textContent = "";
+    }
   }
 
-  // no overlay on main
-  if (document.getElementById("main")) {
-    const targetDiv = document.getElementById("main").getElementsByClassName("overlay")[0];
+
+  // // no overlay on main
+  if (document.getElementById("main").getElementById("overlay")) {
+    const targetDiv = document.getElementById("overlay");
+    // const targetDiv = document.getElementById("main").getElementsByClassName("overlay")[0];
     targetDiv.style = "background:rgba(255,255,255,0)";
   }
   // console.log((moment().format("d")));
