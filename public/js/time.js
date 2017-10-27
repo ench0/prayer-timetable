@@ -81,7 +81,9 @@ if (settings.language == "nl") {
     });
 
     moment.locale('nl');
+    let city = "Europe/Amsterdam"
 }
+else let city = "Europe/Dublin"
 
 (function(){
 
@@ -108,8 +110,9 @@ const jamaahCalc = function(num, time, timenext){
 /* PRAYER CONSTRUCTOR */
 const Prayer = function(now, num) {
 
+  // DST settings
   let dst
-  let dstcheck = moment.tz(moment(), "Europe/Dublin").isDST()
+  let dstcheck = moment.tz(moment(), city).isDST()
   if (!dstcheck && moment().format("M") == "10" ) dst = -1;
   else if (dstcheck && moment().format("M") == "3" ) dst = 1;
   else dst = 0
