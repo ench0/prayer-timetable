@@ -12,6 +12,10 @@ h1, h2, h3, h4, h5 {
     font-family: "Changa",'Helvetica Neue',Arial,Helvetica,sans-serif;
     font-weight: 200;/*200 500*/
 }
+.uk-heading-hero {
+  font-size: 10rem;
+  font-weight: 500;
+}
 
 /*refresh*/
 #refresh {
