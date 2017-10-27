@@ -213,7 +213,11 @@ const timeDisp = (function() {
   let def = times();
 
 	let gregorian = moment().add(tomorrow, 'day').format("dddd, D MMMM YYYY");
-	let hijri = moment().add((settings.hijrioffset + tomorrow), 'day').format("iD iMMMM iYYYY");
+	let hijri = moment().add((parseInt(settings.hijrioffset) + parseInt(tomorrow)), 'day').format("iD iMMMM iYYYY");
+  let hijriMonth = moment().add((parseInt(settings.hijrioffset) + parseInt(tomorrow)), 'day').format("iM");
+  let hijriDay = moment().add((parseInt(settings.hijrioffset) + parseInt(tomorrow)), 'day').format("iD");
+  let hijriDaysLeft = moment.duration( moment().endOf('imonth').diff(moment().add((parseInt(settings.hijrioffset) + parseInt(tomorrow)), 'day')) )
+
 
 	document.getElementById("time").innerHTML = moment().format("H:mm:ss");
 	document.getElementById("date").innerHTML = gregorian + "<br />" + hijri;
@@ -278,7 +282,7 @@ const timeDisp = (function() {
   const jummuahtime = (settings.jummuahtime).split(":");
 
   // Taraweeh Prayer
-  if ( (moment().format("iM") == '9') &&
+  if ( (hijriMonth == '9') &&
        ((moment().isBetween(moment({hour: '0', minute: '00'}), moment({hour: '0', minute: '35'}))) ||
        (moment().isBetween(moment({hour: '23', minute: '15'}), moment({hour: '23', minute: '59', second: '59'}))))
       //  (((moment().isBetween(moment({hour: def.isha.jamaahtime.format('H'), minute: def.isha.jamaahtime.format('m')}), moment().endOf('day').add(35, 'minutes')))))
@@ -311,13 +315,10 @@ const timeDisp = (function() {
 
 
   // Ramadan countdown
-  let hijriMonth = moment().format("iM");
-  let hijriDay = moment().format("iD");
-  // console.log(hijriMonth);
   if (hijriMonth == "8" && hijriDay != "30")
   {
     document.getElementById("ramadan").style = "display: inline;";
-    document.getElementById("ramadan").innerHTML = " | " + moment.duration(moment().endOf('imonth').diff(moment())).humanize()+" "+settings.ramadancountdownlabel;
+    document.getElementById("ramadan").innerHTML = " | " + hijriDaysLeft.humanize()+" "+settings.ramadancountdownlabel;
   }
 
     // setTimeout(function(){timeDisp()}, 1000);
