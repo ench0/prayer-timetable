@@ -34,17 +34,10 @@ html(lang="nl")
     script!= timetabledef
     //- script(src='/js/db/timetable.js')
     script(src='/js/time.js')
-    script(src='/js/refresh.js')
     script(src='/js/jquery.min.js')
     script(src='/js/clock.js')
     script(src='/js/jquery.vticker.min.js')
     script(src='/js/uikit.min.js')
     script(src='/js/uikit-icons.min.js')
     
-    script.
-      $(function() {$('#ticker').vTicker('init', {
-        speed: 500, 
-        pause: 10000,
-        showItems: 3,
-        padding:0})
-        });
+    block scripts

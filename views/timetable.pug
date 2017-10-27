@@ -89,3 +89,14 @@ block content
     div.overlay.uk-position-cover.uk-overlay.uk-overlay-default.uk-flex.uk-flex-center.uk-flex-middle.uk-text-center &nbsp;
 
     div.overlay
+
+block scripts
+    script(src='/js/refresh.js')
+
+    script.
+        $(function() {$('#ticker').vTicker('init', {
+            speed: 500, 
+            pause: 10000,
+            showItems: 3,
+            padding:0})
+            });

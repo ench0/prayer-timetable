@@ -2,68 +2,60 @@ extends layout
 
 block content
 
-    div.main
+    div.uk-section(style="background:"+settings.themecol+" url(\""+settings.themeimg+"\") 50%" uk-height-viewport="offset-top: true")
 
-        div.section
-            div.content.top.darkgrey-b.white-f.center Essalam Islamic Cultural Centre Rotterdam
+        div.uk-section.uk-section-small.uk-section-secondary.uk-text-center.uk-padding-remove.uk-position-top
+            div.uk-container.uk-text-center
+                h2.uk-text-uppercase=settings.title
 
-        div.section
-            div.content
-                include inc/clock.pug
-                div(class='ui sizer vertical segment' id='date-time')
-                    h1#time.center.white-f.nomargin time
+        div.uk-section.uk-section-small.uk-padding-large.uk-position-center(style="width:100%;")
+            div#date-time.uk-section.uk-section-xsmall.uk-text-center.uk-margin-top
+                //- include inc/clock.pug
+                div#date-time
+                    h1#time.uk-heading-hero time
 
-        div.section#date-time.center
-            div.content
+            div#date-time.uk-section.uk-section-small.uk-text-center.uk-text-uppercase
                 div#date date
 
-        div.section
-            div.content
-                div.row.header
-                    div.column.left Prayer
-                    div.column.center Adhan
-                    div.column.center Iqamah
-                    div.column.arabic.right صلاة
-                each val in [['fajr','الفجر'], ['shurooq', 'الشروق'], ['dhuhr', 'الظهر'], ['asr', 'العصر'], ['maghrib', 'المغرب'], ['isha', 'العشاء']]
-                    div.row.line(id="row-"+val[0])
-                        div.column.left= val[0]
-                        div.column.center(id='prayer-time-'+val[0])
-                        div.column.center(id='jamaah-time-'+val[0])
-                        div.column.arabic.right= val[1]
+            div#date-time.uk-section.uk-section-small.uk-text-center
 
-        div.section.center
-            div.content
-                span#pending-name Prayer
-                span#timetoprayer Countdown
-
-        - var hadiths = settings.body.split("\r\n");
-        - var announcements = settings.announcement.split("\r\n");
+                table.uk-table.uk-table-divider.uk-table-middle
+                    thead
+                        tr
+                            th.uk-text-left= settings.prayerlabel
+                            th.uk-text-center= settings.adhanlabel
+                            th.uk-text-center= settings.iqamahlabel
+                            th.uk-text-right.arabic صلاة
 
 
-        div#ramadan.section.center
-            div.content
+                    tbody.uk-text-uppercase.uk-text-center(style="background:rgba(255,255,255,.35);")
+                        - i = 0;
+                        - names = [[settings.names[0],'الفجر'], [settings.names[1], 'الشروق'], [settings.names[2], 'الظهر'], [settings.names[3], 'العصر'], [settings.names[4], 'المغرب'], [settings.names[5], 'العشاء']]
+                        each val in names
+                            tr(id="row-"+i)
+                                td.uk-text-left= val[0]
+                                td(id='prayer-time-'+i)
+                                td(id='jamaah-time-'+i)
+                                td.uk-text-right.arabic= val[1]
+                                - i++
 
 
-        div.section
-            div.content.bottom.darkgrey-b.white-f.center= "Vrijdag Gebed " + settings.jummuahtime
+                                
+            div.uk-section.uk-section-small.uk-text-center
+                span#pending-name.uk-text-right(style="margin-right:10px;") Prayer
+                span#timetoprayer.uk-text-left(style="margin-left:10px;") Countdown
+
+            hr
+
+        - if(((settings.jummuahtime).split(":"))[1] < 10) var jummuahtime = ((settings.jummuahtime).split(":"))[0] + ": 0" + ((settings.jummuahtime).split(":"))[1]; else var jummuahtime = settings.jummuahtime;
+
+        div.uk-section.uk-section-xsmall.uk-section-secondary.uk-text-center.uk-padding-remove.uk-position-bottom
+            div.uk-container.uk-text-center
+                h2.uk-text-uppercase=settings.jummuahlabel + " " + jummuahtime
+                    | 
+                    span#ramadan
+
+
+    div.overlay.uk-position-cover.uk-overlay.uk-overlay-default.uk-flex.uk-flex-center.uk-flex-middle.uk-text-center &nbsp;
 
     div.overlay
-
-    script!= timedef
-
-    script(src='/js/reload.js')
-    script(src='/js/moment.min.js')
-    script(src='/js/moment-timezone-with-data.js')
-    script(src='/js/moment-hijri.js')
-    script(src='/js/db/timetable.js')
-    script(src='/js/time.js')
-    script(src='/js/jquery.min.js')
-    script(src='/js/clock.js')
-    script(src='/js/script.js')
-
-    style(type="text/css").
-      #overlay {
-        background: rgba(0,0,0,0);
-        z-index: -9;
-        display: none;
-      }
