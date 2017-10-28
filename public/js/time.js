@@ -112,7 +112,7 @@ const Prayer = function(now, num) {
 
   // DST settings
   let dst
-  let dstcheck = moment.tz(moment(), city).isDST()
+  let dstcheck = moment.tz(moment().add(tomorrow, "day"), city).isDST()
   if (!dstcheck && moment().format("M") == "10" ) dst = -1;
   else if (dstcheck && moment().format("M") == "3" ) dst = 1;
   else dst = 0
@@ -312,7 +312,7 @@ const timeDisp = (function() {
 
 
   // // no overlay on main
-  if (document.getElementById("main").getElementById("overlay")) {
+  if (document.getElementById("present")) {
     const targetDiv = document.getElementById("overlay");
     // const targetDiv = document.getElementById("main").getElementsByClassName("overlay")[0];
     targetDiv.style = "background:rgba(255,255,255,0)";

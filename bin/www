@@ -5,7 +5,7 @@
  */
 'use strict';
 
-var app = require('../app');
+var app = require('../index');
 var debug = require('debug')('js-prayer-timetable:server');
 var http = require('http');
 var reload = require('reload');
