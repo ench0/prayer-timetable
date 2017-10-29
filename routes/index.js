@@ -11,7 +11,8 @@ const settingsdef = "var settings="+JSON.stringify(settings);
 const auth = require('http-auth');
 var basic = auth.basic({
     realm: "Admin Area",
-    file: __dirname + "/user.pass"
+    // file: __dirname + "/user.pass"
+    file: "./config/user.pass"
 });
 
 
