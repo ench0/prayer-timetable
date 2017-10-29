@@ -55,4 +55,9 @@ app.use(function(err, req, res, next) {
 
 app.disable('x-powered-by');
 
-module.exports = app;
+exports.settings = require('./controllers/settings');
+exports.timetable = require('./controllers/timetable');
+exports.admin = require('./controllers/admin');
+exports.update = require('./controllers/update');
+
+exports.app = app;

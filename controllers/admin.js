@@ -68,7 +68,8 @@ exports.admin_post = function(req, res, next) {
             "names":[req.body.name0,req.body.name1,req.body.name2,req.body.name3,req.body.name4,req.body.name5]
         };
         
-        const file = __dirname+'/settings.json'
+        // const file = __dirname+'/settings.json'
+        const file = './config/settings.json'
         
         console.error("$$$started file write")
         
