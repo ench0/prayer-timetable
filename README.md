@@ -7,6 +7,7 @@ Instructions on deployment coming soon, for now you're on your own. :)
 ## Features
 * Prayer times
 * Jamaah times
+* Jamaah calculation methods
 * Admin area
 * User authentication
 * Next prayer countdown
@@ -17,12 +18,18 @@ Instructions on deployment coming soon, for now you're on your own. :)
 * Mobile view/app
 * Hijri dates
 * Next day activates after isha
+* Hijri offset
+* 2 frontend languages
 
 ## How can you help
 The timetable app currently contains timetables and language packs for Dublin and Rotterdam. If you like your city / language to be included, please contact me and send your own timetable. Use examples from other cities to figure out the JSON format. You are responsible for accuracy of the data.
 
 ## Screenshots
-Frontend
+<!-- Frontend
 ![Frontend](public/screenshots/screenshot1.png)
 Admin area
-![Admin area](public/screenshots/screenshot2.png)
+![Admin area](public/screenshots/screenshot2.png) -->
+
+Frontend             |  Admin area
+:-------------------------:|:-------------------------:
+![Frontend](public/screenshots/screenshot1.png)  |  ![Admin area](public/screenshots/screenshot2.png)
