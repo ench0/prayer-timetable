@@ -7,9 +7,15 @@ const update = require('../controllers/update');
 const timetabledef = "var timetable="+JSON.stringify(timetable);
 const settingsdef = "var settings="+JSON.stringify(settings);
 
-
 const auth = require('http-auth');
-var basic = auth.basic({
+
+const fs = require('fs-extra')
+const dir = './config'
+const file = './config/user.pass'
+fs.ensureDirSync(dir)    
+fs.writeFileSync(file, 'admin:$apr1$acefXgWp$YP1nTuvv2wo9wXxQ.cXvs1')
+
+const basic = auth.basic({
     realm: "Admin Area",
     // file: __dirname + "/user.pass"
     file: "./config/user.pass"
