@@ -1,34 +1,49 @@
 # Prayer timetable
 
-Muslim prayer timetable app for deployment on Raspberry Pi. NodeJS powered. Please note that this is at alpha stage and built specifically for my own needs.
+Muslim prayer timetable app for deployment on Raspberry Pi. It is meant to be used on public displays to show your local community's prayer times. Can be used in masjids, mosques or even home. Optimised for Full HD screens. NodeJS and Express powered, using UIKit for styling, Pug for template engine, Moment.js for time manipulation and more. Please note that this is at alpha stage and built specifically for my own needs.
+
+This software is provided as-is, with no warranty of any kind. I provide it for free and do not expect and ask for any compensation. What's more, I will help you setup your own presentation screen and even install for free, but you will cover the postal bills in case you send me your own Raspberry Pi for setup.
 
 Instructions on deployment coming soon, for now you're on your own. :)
 
 ## Features
 * Prayer times
 * Jamaah times
-* Jamaah calculation methods
+* Jamaah calculation offsets/methods
 * Admin area
 * User authentication
+* Automatic refresh of frontend after backend/admin update
+* Git updates
 * Next prayer countdown
 * Jummuah notification
 * Refresh bar
 * Themes
-* Announcements
+* Announcements/messages
 * Mobile view/app
 * Hijri dates
-* Next day activates after isha
 * Hijri offset
+* Next day starts after isha
 * 2 frontend languages
 
 ## How can you help
-The timetable app currently contains timetables and language packs for Dublin and Rotterdam. If you like your city / language to be included, please contact me and send your own timetable. Use examples from other cities to figure out the JSON format. You are responsible for accuracy of the data.
+The timetable app currently contains timetables and language packs for Dublin and Rotterdam. If you like your city/language to be included, please contact me and send your own timetable. Use examples from other cities to figure out the JSON format. You are responsible for accuracy of the data.
+
+## Tools and libraries used
+* NodeJS
+* Express
+* Moment JS, Moment Timezone, Moment Hijri
+* UI Kit
+* Pug
+* Reload
+* JQuery
+* String
+* Shell JS
+* Nodemon for development
+* OpenSans fonts
+* Changa fonts
+* Freepik images for backgrounds
 
 ## Screenshots
-<!-- Frontend
-![Frontend](public/screenshots/screenshot1.png)
-Admin area
-![Admin area](public/screenshots/screenshot2.png) -->
 
 Frontend             |  Admin area
 :-------------------------:|:-------------------------:
