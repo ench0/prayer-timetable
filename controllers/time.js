@@ -4,6 +4,7 @@
  * 		@copyright Ensar ensar@farend.net
  * 		@license Used momentjs library for time manipulation, rest of code free for distribution provided this info is included.
  */
+'use strict';
 
 var moment = require('moment');
 var hijri = require('moment-hijri');
@@ -195,7 +196,7 @@ var times = function() {
   }
 
 //          0     1        2      3    4        5     6    7     8
-  output = [fajr, shurooq, dhuhr, asr, maghrib, isha, now, next, current]
+const output = [fajr, shurooq, dhuhr, asr, maghrib, isha, now, next, current]
 //   output = {
       
 //     // fajr: fajr, shurooq: shurooq, dhuhr: dhuhr, asr: asr, maghrib: maghrib, isha: isha,

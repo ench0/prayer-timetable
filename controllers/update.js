@@ -1,12 +1,14 @@
-var shell = require('shelljs');
-var path = require('path')
+'use strict';
 
-var cd = "cd " + path.join(__dirname, "../");
+const shell = require('shelljs');
+const path = require('path')
+
+const cd = "cd " + path.join(__dirname, "../");
 
 exports.github = function(req, res, next) {
 
   shell.exec(cd);
-  var message = shell.exec('git pull');
+  const message = shell.exec('git pull');
 //   shell.exec('pm2 reload www');
 
   res.render('update', { title: 'Update', message: message });
@@ -15,7 +17,7 @@ exports.github = function(req, res, next) {
 exports.reboot = function(req, res, next) {
     
       shell.exec(cd);
-      var message = shell.exec('sudo reboot');
+      const message = shell.exec('sudo reboot');
     
       res.render('reboot', { title: 'Reboot', message: message });
 }

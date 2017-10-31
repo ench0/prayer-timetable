@@ -1,9 +1,13 @@
+'use strict';
+
 var settings = require('./settings');
+
 var time = require('./time');
 var jsonfile = require('jsonfile')
 var S = require('string');
 var sys = require('util')
 var exec = require('child_process').exec;
+const fs = require('fs-extra')
 
 // admin form on GET
 exports.admin_get = function(req, res, next) {
@@ -63,11 +67,11 @@ exports.admin_post = function(req, res, next) {
             "names":[req.body.name0,req.body.name1,req.body.name2,req.body.name3,req.body.name4,req.body.name5]
         };
         
-        var file = __dirname+'/settings.json'
+        const file = __dirname+'/settings.json'
         
         console.error("$$$started file write")
         
-        jsonfile.writeFile(file, settingsnew, {spaces: 2}, function(err) {
+        jsonfile.writeFileSync(file, settingsnew, {spaces: 2}, function(err) {
             console.error("errors:")
             console.error(err)
             console.error("file:")
@@ -77,6 +81,7 @@ exports.admin_post = function(req, res, next) {
         })
         // jsonfile.writeFileSync(file, settingsnew, {spaces: 2})
 
+        // fs.writeJsonSync(file, settingsnew)
 
         console.error("$$$finished file write")
         
