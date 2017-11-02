@@ -1,10 +1,12 @@
 extends layout
 
+
 block content
     //- TOP BAR
     div.uk-section.uk-section-small.uk-section-secondary.uk-text-center.uk-padding-remove.uk-position-top
         div.uk-container.uk-text-center
             h2.uk-text-uppercase=settings.title
+                span=mobset
 
     //- TABLE
     table.uk-height-viewport.uk-width-1.uk-table.uk-table-divider.uk-table-middle.uk-margin-remove.uk-table-small(uk-height-viewport="offset-top: true;offset-bottom: true;" style="background:"+settings.themecol+" url(\""+settings.themeimg+"\") 50%;margin:40px 0!important;")
@@ -58,8 +60,38 @@ block content
             h2.uk-text-uppercase=settings.jummuahlabel + " " + jummuahtime
                 | 
                 span#ramadan
+                a#update(href) upd
+                span#mm kkoo
+                input#arabic(type="checkbox" value="val_1" name="but1")
+                span Click!
+
 
 
 block scripts
     if settings.clock == "analogue"
         script(src='/js/clock.js')
+    
+    script.
+        $("arabic").click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "GET",
+                url: "/mobile?arabic=1",
+                data: { 
+                    jamaah: $(this).val(), // < note use of 'this' here
+                },
+                success: function(result) {
+                    alert('ok');
+                },
+                error: function(result) {
+                    alert('error');
+                }
+            });
+        });
+        //- $('#update').click($("#mm").load("/admin #mm"));
+
+        //- $(document).ready(function () {
+        //-     $('a#update').click(function(){
+        //-         load( '/mobile?arabic=1 #body' );
+        //-     });
+        //- });

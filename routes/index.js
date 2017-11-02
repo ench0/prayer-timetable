@@ -43,7 +43,14 @@ router.get('/timetable', function(req, res, next) {
   res.render('timetable', { title: 'Timetable', settings: settings, timetabledef: timetabledef, settingsdef: settingsdef });
 });
 router.get('/mobile', function(req, res, next) {
-  res.render('mobile', { title: 'Timetable', settings: settings, timetabledef: timetabledef, settingsdef: settingsdef });
+  let analogue = req.query.analogue || req.cookies.mobset[0] || '0'
+  let jamaah = req.query.jamaah || req.cookies.mobset[1] || '1'
+  let arabic = req.query.arabic || req.cookies.mobset[2] || '1'
+
+  res.cookie('mobset', [analogue, jamaah, arabic], { maxAge: 31556952000, httpOnly: true });
+  var mobset = req.cookies.mobset
+  console.log("mobset:", mobset)
+  res.render('mobile', { title: 'Timetable', settings: settings, mobset: mobset, timetabledef: timetabledef, settingsdef: settingsdef });
 });
 
 
