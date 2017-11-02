@@ -12,8 +12,21 @@ const auth = require('http-auth');
 const fs = require('fs-extra')
 const confdir = './config'
 const passfile = './config/user.pass'
-fs.ensureDirSync(confdir)    
-fs.ensureFileSync(passfile, 'admin:$apr1$acefXgWp$YP1nTuvv2wo9wXxQ.cXvs1')
+
+
+
+// check user pass file
+if (fs.existsSync(passfile) && fs.statSync(passfile).size>0) {
+  console.log("#####pass file ok#####")
+  console.log("pass file size: "+fs.statSync(passfile).size)
+}
+else {
+  console.log("#####pass write#####")
+  fs.ensureDirSync(confdir)    
+  fs.writeFileSync(passfile, 'admin:$2a$10$XNuKAWZ6Qx/pXnYGkRT67OKJ8RlVTHdOZOw6nIC0CNg5Y1JbJy2r6')
+}
+
+
 
 const basic = auth.basic({
     realm: "Admin Area",
