@@ -115,6 +115,9 @@ exports.pass_get = function(req, res, next) {
 exports.pass_post = function(req, res, next) {
     var message
 
+    if (req.body.password != req.body.confirm) {
+        res.render('pass', { title: 'Password change form', message: "Passwords need to match!" })
+    }
 
     if (req.body.password == "") message = "No password provided - password reset to default!"
     var password = req.body.password || plaintextPassword
