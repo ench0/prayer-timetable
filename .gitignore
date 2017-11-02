@@ -59,3 +59,7 @@ typings/
 
 config/settings.json
 config/user.pass
+
+# OS generated files
+.DS_Store
+Thumbs.db
