@@ -16,11 +16,14 @@ block content
     table.uk-height-viewport.uk-width-1.uk-table.uk-table-divider.uk-table-middle.uk-margin-remove.uk-table-small(uk-height-viewport="offset-top: true;offset-bottom: true;" style="background:"+settings.themecol+" url(\""+settings.themeimg+"\") 50%;margin:40px 0!important;")
         tr.uk-card.uk-card-body.uk-text-center
             td
-                h1(style="padding-top:80px;")#time.uk-heading-hero time
-        tr.uk-card.uk-card-body.uk-text-center
-            td#date date
+                if settings.clock == "digital"
+                    include inc/clock-digital
+                else if settings.clock == "analogue"
+                    include inc/clock-analogue
 
-        //-         //- include inc/clock.pug
+        tr.uk-card.uk-card-body.uk-text-center
+            td#date.uk-text-uppercase(style="font-size:90%;") date
+
 
         tr.uk-card.uk-card-body.uk-text-center
             td(style="padding:0 30px!important;margin:0!important;")
@@ -46,7 +49,7 @@ block content
 
         tr.uk-card.uk-card-body.uk-text-center
             td
-                div
+                div.uk-text-uppercase
                     span#pending-name.uk-text-right(style="margin-right:10px;") Prayer
                     span#timetoprayer.uk-text-left(style="margin-left:10px;") Countdown
                                 
@@ -92,6 +95,9 @@ block content
 
 block scripts
     script(src='/js/refresh.js')
+
+    if settings.clock == "analogue"
+        script(src='/js/clock.js')
 
     style(type="text/css").
         #ticker ul {

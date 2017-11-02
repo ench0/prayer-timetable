@@ -247,6 +247,17 @@ block content
                                 else
                                     option(value=img[0])= img[1]
 
+                    div.uk-margin
+                        label.uk-form-label(for='clock') Clock:
+                        select.uk-select(class="uk-width-1-4@s" name='clock') 
+                            each choice in [["digital", "Digital"], ["analogue", "Analogue"]]
+                                if choice[0] == body.clock
+                                    option(selected='selected' value=choice[0])=choice[1]
+                                if choice[0] == settings.clock
+                                    option(selected='selected' value=choice[0])=choice[1]
+                                else
+                                    option(value=choice[0])= choice[1]
+
 
                 div.uk-section.uk-section-xsmall
                     button.uk-button.uk-button-primary(type='submit') Submit

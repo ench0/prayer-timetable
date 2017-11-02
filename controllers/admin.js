@@ -67,6 +67,7 @@ exports.admin_post = function(req, res, next) {
             "language":req.body.language,
             "themecol":req.body.themecol,
             "themeimg":req.body.themeimg,
+            "clock":req.body.clock,
             "jummuahlabel":req.body.jummuahlabel,
             "prayerlabel":req.body.prayerlabel,
             "adhanlabel":req.body.adhanlabel,
