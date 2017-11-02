@@ -6,7 +6,8 @@ This software is provided as-is, with no warranty of any kind. I provide it for 
 
 Instructions on deployment coming soon, for now you're on your own. :)
 
-Main display: your_IP:3000
+Home page: your_IP:3000
+Main timetable display: your_IP:3000/timetable
 Mobile view: your_IP:3000/mobile
 Admin area: your_IP:3000/admin
 
