@@ -9,6 +9,14 @@ var sys = require('util')
 var exec = require('child_process').exec;
 const fs = require('fs-extra')
 
+// bcrypt
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const plaintextPassword = 'admin';
+// pass file
+const confdir = './config'
+const passfile = './config/user.pass'
+
 // admin form on GET
 exports.admin_get = function(req, res, next) {
     var message = req.query.message;
@@ -95,4 +103,31 @@ exports.admin_post = function(req, res, next) {
         // res.render('view', { title: 'View Timetable!', settings: settings, time: time, message: "Success! Please refresh this page to see the updated version." });
         
     }
+};
+
+
+// View on GET
+exports.pass_get = function(req, res, next) {
+    var message = req.query.message;
+    res.render('pass', { title: 'Password change form', message: message });
+};
+
+exports.pass_post = function(req, res, next) {
+    var message
+
+
+    if (req.body.password == "") message = "No password provided - password reset to default!"
+    var password = req.body.password || plaintextPassword
+
+    var salt = bcrypt.genSaltSync(saltRounds);
+    var hash = bcrypt.hashSync(password, salt);
+
+    // console.log(password,hash)
+    
+    fs.ensureDirSync(confdir)  
+    console.log("success!")
+    if (!message) message = "Password changed successfully!";
+    fs.writeFileSync(passfile, 'admin:'+hash)
+    
+    res.render('pass', { title: 'Password change form', message: message })
 };

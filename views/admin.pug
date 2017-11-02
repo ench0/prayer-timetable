@@ -89,7 +89,7 @@ block content
 
                     div.uk-margin
                         label.uk-form-label(for='title') Title:
-                        input.uk-input(type='text', placeholder='Organisation title' name='title' value=(undefined===body.title ? settings.title : body.title) ) 
+                        input.uk-input(type='text', placeholder='Organisation title' name='title' value=(undefined===body.title ? settings.title : body.title) )
 
                     div.uk-margin
                         label.uk-form-label(for='body') Text body:
@@ -258,3 +258,5 @@ block content
             a.item(href="/update") Update
             span &nbsp; &middot; &nbsp;
             a.item(href="/reboot") Reboot
+            span &nbsp; &middot; &nbsp;
+            a.item(href="/admin/password") Change password

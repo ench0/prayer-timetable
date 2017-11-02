@@ -10,10 +10,10 @@ const settingsdef = "var settings="+JSON.stringify(settings);
 const auth = require('http-auth');
 
 const fs = require('fs-extra')
-const dir = './config'
-const file = './config/user.pass'
-fs.ensureDirSync(dir)    
-fs.writeFileSync(file, 'admin:$apr1$acefXgWp$YP1nTuvv2wo9wXxQ.cXvs1')
+const confdir = './config'
+const passfile = './config/user.pass'
+fs.ensureDirSync(confdir)    
+fs.ensureFileSync(passfile, 'admin:$apr1$acefXgWp$YP1nTuvv2wo9wXxQ.cXvs1')
 
 const basic = auth.basic({
     realm: "Admin Area",
@@ -40,10 +40,17 @@ router.get('/admin', auth.connect(basic), admin.admin_get);
 /* POST request for creating Genre. */
 router.post('/admin', auth.connect(basic), admin.admin_post);
 
+// Password form
+router.get('/admin/password', auth.connect(basic), admin.pass_get);
+
+// password post
+router.post('/admin/password', auth.connect(basic), admin.pass_post);
+
 router.get('/update', auth.connect(basic), update.github);
 
 router.get('/reboot', auth.connect(basic), update.reboot);
 
 router.get('/view', admin.view);
+
 
 module.exports = router;

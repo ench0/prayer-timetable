@@ -1,6 +1,6 @@
 {
   "name": "prayer-timetable",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "private": false,
   "scripts": {
     "start": "node ./bin/www",
@@ -8,6 +8,7 @@
     "test": "ava"
   },
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "~1.16.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.0",
@@ -30,7 +31,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ench0/js_prayer_timetable.git"
+    "url": "git://github.com/ench0/prayer-timetable.git"
   },
   "engines": {
     "node": ">= 7"

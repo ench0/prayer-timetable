@@ -6,12 +6,24 @@ This software is provided as-is, with no warranty of any kind. I provide it for 
 
 Instructions on deployment coming soon, for now you're on your own. :)
 
+Main display: your_IP:3000
+Mobile view: your_IP:3000/mobile
+Admin area: your_IP:3000/admin
+
+Default username/password for admin area: admin/admin
+
+To manually change the password, use:
+htpasswd -Bc ./config/user.pass admin
+
+Password can be changed from the admin area as well. 
+
 ## Features
 * Prayer times
 * Jamaah times
 * Jamaah calculation offsets/methods
 * Admin area
-* User authentication
+* Basic user authentication
+* Password change
 * Automatic refresh of frontend after backend/admin update
 * Git updates
 * Next prayer countdown
@@ -42,6 +54,7 @@ The timetable app currently contains timetables and language packs for Dublin an
 * OpenSans fonts
 * Changa fonts
 * Freepik images for backgrounds
+* http-auth + bcrypt
 
 ## Screenshots
 

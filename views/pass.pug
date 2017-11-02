@@ -1,0 +1,34 @@
+extends layout_admin
+
+block content
+
+    div.uk-section-xsmall.uk-section-primary
+        div.uk-container.uk-text-center
+            h1=title
+
+    div.uk-section-xsmall.uk-section-muted
+        div.uk-container
+            if message
+                div.uk-alert-success(uk-alert)
+                    i(uk-icon="icon: info")
+                    a.uk-alert-close(uk-close)
+                    span &nbsp; &nbsp;
+                    | #{message}
+
+            form.uk-form-stacked(method='POST' action='')
+
+                if errors
+                    div.uk-alert-danger(uk-alert)
+                        i(uk-icon="icon: warning")
+                        a.uk-alert-close(uk-close)
+                        for error in errors
+                            span &nbsp; &nbsp;
+                            span!= error.msg
+
+                div.uk-margin
+                    label.uk-form-label(for='password') New password:
+                    input.uk-input(type='password', placeholder='password' name='password')
+            
+                button.uk-button.uk-button-primary(type='submit') Submit
+
+                a.uk-button.uk-button-danger(href="/admin") Back to Admin
