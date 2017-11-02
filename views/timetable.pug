@@ -56,17 +56,19 @@ block content
         tr.uk-card.uk-card-body.uk-text-center
             - var bodytext = settings.body.split("\r\n");
             - var announcements = settings.announcement.split("\r\n");
+            - console.log(bodytext)
 
             td
-                div#ticker.uk-text-center(style="width:100%;padding-bottom:40px;")
+                div#ticker.uk-text-center(style="width:100%;")
                     ul.uk-list.uk-text-center
                         each text in bodytext
                             - var words = text.split(" ");
-                            - var arrays = [], size = 7;
+                            - var arrays = [], size = 10;
                             - while(words.length>0) {arrays.push(words.splice(0,size)); }
                             each array in arrays
                                 - val = array.join(" ")
-                                li.arabic=val
+                                li.arabic
+                                    span(style='white-space:pre-line;')=val
                         each announcement in announcements
                             - var words = announcement.split(" ");
                             - var arrays = [], size = 7;
@@ -93,6 +95,12 @@ block content
 block scripts
     script(src='/js/refresh.js')
 
+    style(type="text/css").
+        #ticker ul {
+            list-style: none;
+            padding-left: 2em;
+            width: 100%;
+        }
     script.
         $(function() {$('#ticker').vTicker('init', {
             speed: 500, 
