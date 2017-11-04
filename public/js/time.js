@@ -266,15 +266,19 @@ const timeDisp = (function() {
 
         let starttime
         if (def[8]['num'] == 5 && tomorrow == 1) starttime = moment(); else if (def[8]['num'] == 5 && tomorrow == 0) starttime = def[8].time; else starttime = def[8].time;
-        if ((moment().add(tomorrow, 'day')).isBetween(starttime, def[8].jamaahtime))
-        {
-        document.getElementById("pending-name").innerHTML = settings.preparelabel + " " + def[8].name + " " + settings.prayerlabel;
+
+        if (!hidejamaah) { // if hidejamaah is not set in mobile.pug
+          if ((moment().add(tomorrow, 'day')).isBetween(starttime, def[8].jamaahtime))
+          {
+            document.getElementById("pending-name").innerHTML = settings.preparelabel + " " + def[8].name + " " + settings.prayerlabel;
             document.getElementById("timetoprayer").innerHTML = timeToJamaah.hours + ':' + timeToJamaah.minutes + ':' + timeToJamaah.seconds;
+          }
         }
+
         if ((moment().add(tomorrow, 'day')).isBetween(moment().startOf('day'), moment().startOf('day').add(5, 's')))
         {
-        document.getElementById("pending-name").innerHTML = "Midnight";
-            document.getElementById("timetoprayer").innerHTML = "Time";
+          document.getElementById("pending-name").innerHTML = "Midnight";
+          document.getElementById("timetoprayer").innerHTML = "Time";
         }
 	}
 

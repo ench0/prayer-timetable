@@ -45,21 +45,18 @@ router.get('/timetable', function(req, res, next) {
 
 
 
+// MOBILE ROUTES
 router.get('/mobile', function(req, res, next) {
 
   if (req.cookies.mobset) var mobset = req.cookies.mobset
-  else mobset = ['', '', '', '', '']
-  // console.log("mobset:", mobset)
+  else mobset = ['', '', '', '', '', '']
   res.render('mobile', { title: 'Timetable', settings: settings, mobset:mobset, timetabledef: timetabledef, settingsdef: settingsdef, body: req.body });
   
 });
 
-
-
-
 router.post('/mobile', function(req, res, next) {
  
-  res.cookie('mobset', [req.body.analogue || '', req.body.jamaah || '', req.body.arabic || '', req.body.themecol || '', req.body.themeimg || ''], { maxAge: 31556952000, httpOnly: false })//.send('Cookie is set');
+  res.cookie('mobset', [req.body.analogue || '', req.body.jamaah || '', req.body.arabic || '', req.body.themecol || '', req.body.themeimg || '', 'cookies agree'], { maxAge: 31556952000, httpOnly: false })//.send('Cookie is set');
   res.redirect('mobile')
 
 });

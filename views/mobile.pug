@@ -47,11 +47,11 @@ block off-canvas
 
                 button.uk-button.uk-button-default.uk-margin(type='submit') Submit
 
-
-                div(uk-alert).uk-position-bottom(style="width:90%;background:rgba(0,0,0,.1);color:#ccc;")
-                    a.uk-alert-close(uk-close)
-                    h2 Cookies
-                    p.uk-text-small(style="font-size:80%;") In order to remember your settings above, we use cookies. No personal information is collected.
+                if !mobset[5]
+                    div(uk-alert).uk-position-bottom(style="width:90%;background:rgba(0,0,0,.1);color:#ccc;")
+                        a.uk-alert-close(uk-close)
+                        h2 Cookies
+                        p.uk-text-small(style="font-size:80%;") In order to remember your settings above, we use cookies. No personal information is collected. By continuing to use this app and submitting the above, you agree to give us your consent to do so.
 
 
 block content
@@ -134,6 +134,12 @@ block content
                 span#ramadan
 
 
+    if !mobset[1]
+        script.
+            var hidejamaah = true
+    else
+        script.
+            var hidejamaah
 
 block scripts
     if mobset[0]
