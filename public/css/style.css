@@ -220,12 +220,12 @@ h2 {
   /* .uk-table-small td, .uk-table-small th {
     padding: 10px 40px!important;
   } */
-  option {
+  .uk-offcanvas-bar option {
     height: 20px;
     background: #333;
     font-size: 50%;
   }
-  option:hover {
+  .uk-offcanvas-bar option:hover {
     height: 20px;
     background: #999;
   }
