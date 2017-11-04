@@ -182,3 +182,28 @@ h1, h2, h3, h4, h5 {
   output:after{
     content:" mins";
   }
+
+  .uk-form-label, .uk-button {
+    font-size: 100%;
+  }
+  .uk-checkbox, .uk-radio {
+    height: 32px;
+    width: 32px;
+  }
+  .uk-offcanvas-close svg {
+    height: 32px;
+    width: 32px;
+  }
+  .uk-offcanvas-bar .uk-button {
+    padding: 30px;
+  }
+  .uk-offcanvas-container .uk-offcanvas-content {
+    position: inherit;
+  }
+  @media (min-width: 960px)
+  {
+    .uk-offcanvas-bar {
+        width: 600px;
+        padding: 0 40px 40px;
+    }
+  }

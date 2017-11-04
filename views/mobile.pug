@@ -1,25 +1,54 @@
-extends layout
+extends layout_mobile
 
+block off-canvas
+    #offcanvas-usage(uk-offcanvas='')
+        .uk-offcanvas-bar.uk-preserve-color
+            button.uk-offcanvas-close(type='button', uk-close='')
+            p Settings
+
+            form.uk-form-stacked(method='POST' action='')
+                div.uk-margin
+                    if mobset[0] 
+                        input.uk-checkbox.uk-margin-right(type="checkbox" name="analogue" checked title="Analogue")
+                        | Analogue Clock
+                    else
+                        input.uk-checkbox.uk-margin-right(type="checkbox" name="analogue" title="Analogue")
+                        | Analogue Clock
+                div.uk-margin
+                    if mobset[1] 
+                        input.uk-checkbox.uk-margin-right(type="checkbox" name="jamaah" checked title="Jamaah")
+                        | Jamaah
+                    else
+                        input.uk-checkbox.uk-margin-right(type="checkbox" name="jamaah" title="Jamaah")
+                        | Jamaah
+                div.uk-margin
+                    if mobset[1] 
+                        input.uk-checkbox.uk-margin-right(type="checkbox" name="arabic" checked title="Arabic")
+                        | Arabic
+                    else
+                        input.uk-checkbox.uk-margin-right(type="checkbox" name="arabic" title="Arabic")
+                        | Arabic
+
+                button.uk-button.uk-button-default.uk-margin(type='submit') Submit
 
 block content
     //- TOP BAR
     div.uk-section.uk-section-small.uk-section-secondary.uk-text-center.uk-padding-remove.uk-position-top
         div.uk-container.uk-text-center
             h2.uk-text-uppercase=settings.title
-                |  
-            span analogue/jamaah/arabic
-                | 
-            span=mobset
-            label
-                //- input#arabic.uk-checkbox(type="checkbox" value=1 checked name="but1")
-                input#check.uk-checkbox(type="checkbox" name="arabic" value="FALSE" title="Action 1")
+                a.uk-position-right(href='#offcanvas-usage', uk-toggle='' uk-icon="icon: menu;ratio: 2")
+            //-     |  
+            //- span analogue/jamaah/arabic
+            //-     | 
+            //- span=mobset
+
 
 
     //- TABLE
     table.uk-height-viewport.uk-width-1.uk-table.uk-table-divider.uk-table-middle.uk-margin-remove.uk-table-small(uk-height-viewport="offset-top: true;offset-bottom: true;" style="background:"+settings.themecol+" url(\""+settings.themeimg+"\") 50%;margin:40px 0!important;")
         tr.uk-card.uk-card-body.uk-text-center
             td
-                if settings.clock == "analogue"
+                if mobset[0]
                     include inc/clock-analogue
                 else
                     include inc/clock-digital
@@ -34,9 +63,14 @@ block content
                     thead
                         tr
                             th.uk-text-left= settings.prayerlabel
-                            th.uk-text-center= settings.adhanlabel
-                            th.uk-text-center= settings.iqamahlabel
-                            th.uk-text-right.arabic صلاة
+                            if mobset[1]
+                                th.uk-text-center= settings.adhanlabel
+                            else
+                                th.uk-text-right= settings.adhanlabel
+                            if mobset[1]
+                                th.uk-text-center= settings.iqamahlabel
+                            if mobset[2]
+                                th.uk-text-right.arabic صلاة
 
 
                     tbody.uk-text-uppercase.uk-text-center(style="background:rgba(255,255,255,.35);")
@@ -45,9 +79,14 @@ block content
                         each val in names
                             tr(id="row-"+i)
                                 td.uk-text-left= val[0]
-                                td(id='prayer-time-'+i)
-                                td(id='jamaah-time-'+i)
-                                td.uk-text-right.arabic= val[1]
+                                if mobset[1]
+                                    td.uk-text-center(id='prayer-time-'+i)
+                                else
+                                    td.uk-text-right(id='prayer-time-'+i)
+                                if mobset[1]
+                                    td(id='jamaah-time-'+i)
+                                if mobset[2]
+                                    td.uk-text-right.arabic= val[1]
                                 - i++
 
         tr.uk-card.uk-card-body.uk-text-center
@@ -77,66 +116,33 @@ block scripts
     if settings.clock == "analogue"
         script(src='/js/clock.js')
     
-    script.
-        $("#check").change(function () {
-            if($(this).is(':checked')) { console.log("checked"); $(this).val('1');}
-            else {console.log("unchecked"); $(this).val('0');}
+    //- script.
+    //-     $("#check").change(function () {
+    //-         if($(this).is(':checked')) { console.log("checked"); $(this).val('1');}
+    //-         else {console.log("unchecked"); $(this).val('0');}
 
-            //- var value = $(this).val();
-            var analogue = $("#analogue").val();
-            var jamaah = $("#jamaah").val();
-            var arabic = $("#arabic").val();
-            console.log("analogue:",analogue,"jamaah:",jamaah,"arabic:",arabic)
+    //-         //- var value = $(this).val();
+    //-         var analogue = $("#analogue").val();
+    //-         var jamaah = $("#jamaah").val();
+    //-         var arabic = $("#arabic").val();
+    //-         console.log("analogue:",analogue,"jamaah:",jamaah,"arabic:",arabic)
 
-            $.ajax({
-                type: "POST",
-                url: "/mobile",
-                //- async: true,
-                data: {
-                    analogue: analogue,
-                    jamaah: jamaah,
-                    arabic: arabic
-                },
-                success: function (msg) {
-                    //- alert('Success');
-                    console.log("Posted successfully!")
-                    //- if (msg != 'success') {
-                    //-     alert('Fail');
-                    //- }
-                }
-            });
-        });
+    //-         $.ajax({
+    //-             type: "POST",
+    //-             url: "/mobile",
+    //-             //- async: true,
+    //-             data: {
+    //-                 analogue: analogue,
+    //-                 jamaah: jamaah,
+    //-                 arabic: arabic
+    //-             },
+    //-             success: function (msg) {
+    //-                 //- alert('Success');
+    //-                 console.log("Posted successfully!")
+    //-                 //- if (msg != 'success') {
+    //-                 //-     alert('Fail');
+    //-                 //- }
+    //-             }
+    //-         });
+    //-     });
 
-
-        //- $("#arabic").change(function(e) {
-        //-     e.preventDefault();
-            
-        //-     $.ajax({
-        //-         type: "GET",
-        //-         //- url: "/mobile?arabic=1",
-        //-         url: "/mobile",
-        //-         data: { 
-        //-             jamaah: $(this).val(), // < note use of 'this' here
-        //-         },
-        //-         success: function(result) {
-        //-             //- var koko = $(this).val()
-        //-             alert('ok');
-        //-             console.log("result:", result)
-        //-             //- console.log("koko:", koko)
-        //-         },
-        //-         error: function(result) {
-        //-             alert('error');
-        //-         }
-        //-     });
-        //- });
-
-
-
-
-        //- $('#update').click($("#mm").load("/admin #mm"));
-
-        //- $(document).ready(function () {
-        //-     $('a#update').click(function(){
-        //-         load( '/mobile?arabic=1 #body' );
-        //-     });
-        //- });

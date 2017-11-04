@@ -49,15 +49,18 @@ router.get('/mobile', function(req, res, next) {
         var mobset2 = req.cookies.mobset[2]
     }
 
-  let analogue = req.query.analogue || mobset0 || '0'
-  let jamaah = req.query.jamaah || mobset1 || '1'
-  let arabic = req.query.arabic || mobset2 || '1'
+  let analogue = req.query.analogue || mobset0 || ''
+  let jamaah = req.query.jamaah || mobset1 || 'on'
+  let arabic = req.query.arabic || mobset2 || 'on'
 
-  res.cookie('mobset', [analogue, jamaah, arabic], { maxAge: 31556952000, httpOnly: true });
+  // res.cookie('mobset', [analogue, jamaah, arabic], { maxAge: 31556952000, httpOnly: true });
   var mobset = req.cookies.mobset
-  console.log("mobset:", mobset)
-  res.render('mobile', { title: 'Timetable', settings: settings, mobset: mobset, timetabledef: timetabledef, settingsdef: settingsdef });
+  // console.log("mobset:", mobset)
+  res.render('mobile', { title: 'Timetable', settings: settings, mobset:mobset, timetabledef: timetabledef, settingsdef: settingsdef, body: req.body });
 });
+
+
+
 
 router.post('/mobile', function(req, res, next) {
     if (req.cookies.mobset) {
@@ -66,22 +69,24 @@ router.post('/mobile', function(req, res, next) {
         var mobset2 = req.cookies.mobset[2]
     }
 
-    console.log("req.query.arabic:", req.body)
+    // console.log("req.body:", req.body)
     // console.log('STATUS: ' + req.statusCode);
     // console.log('HEADERS: ' + JSON.stringify(req.headers));
 
-  let analogue = req.body.analogue || mobset0 || '0'
-  let jamaah = req.body.jamaah || mobset1 || '1'
-  let arabic = req.body.arabic || mobset2 || '1'
+  let analogue = req.body.analogue || ''
+  let jamaah = req.body.jamaah || ''
+  let arabic = req.body.arabic || ''
 
   console.log("analogue:",analogue,"jamaah:",jamaah,"arabic:",arabic)
   
-  res.cookie('mobset', [analogue, jamaah, arabic], { maxAge: 31556952000, httpOnly: false }).send('Cookie is set');
+  res.cookie('mobset', [analogue, jamaah, arabic], { maxAge: 31556952000, httpOnly: false })//.send('Cookie is set');
 
-  var mobset = req.cookies.mobset
+  var mobset =" req.cookies.mobset"
 //   console.log("cookies:", req.cookies)
-  console.log("mobset:", mobset)
-  return
+  // console.log("mobset:", mobset)
+  // res.render('mobile', { title: 'Timetable', settings: settings, mobset: mobset, timetabledef: timetabledef, settingsdef: settingsdef, body: req.body });
+  res.redirect('mobile')
+  // return
 });
 
 

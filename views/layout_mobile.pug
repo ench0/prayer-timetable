@@ -1,0 +1,52 @@
+doctype html
+html(lang="nl")
+    head
+        title= title
+        link(rel='stylesheet', href='/css/normalize.css')
+        //- link(rel='stylesheet', href='/css/milligram.min.css')
+        link(rel='stylesheet', href='/css/uikit.min.css')
+        link(rel='stylesheet', href='/css/css3clock.css')
+        //- link(rel='stylesheet', href='/css/roboto.css')
+        link(rel='stylesheet', href='/css/open-sans.css')
+        //- link(rel='stylesheet', href='/css/open-sans-condensed.css')
+
+        link(rel='stylesheet', href='/css/changa.css')
+
+
+        link(rel='stylesheet', href='/css/style.css')
+        style(type="text/css").
+            body, .uk-table th {
+                font-family: "Open Sans",'Helvetica Neue',Arial,Helvetica,sans-serif;
+                font-size: 48px;
+            }
+            .uk-heading-hero {
+                font-size: 10rem;
+                font-weight: 500;
+            }
+
+    body#body(style="overflow: hidden;")
+
+        
+        .uk-offcanvas-content
+            block off-canvas
+            //- button.uk-button.uk-button-default.uk-margin-small-right(type='button', uk-toggle='target: #offcanvas-usage') Open
+            //- a(href='#offcanvas-usage', uk-toggle='') Open
+
+            //- The whole page content goes here
+            block content
+
+
+    script(src='/js/reload.js')
+
+    script(src='/js/moment.min.js')
+    script(src='/js/moment-timezone-with-data.js')
+    script(src='/js/moment-hijri.js')
+    script!= settingsdef
+    script!= timetabledef
+    //- script(src='/js/db/timetable.js')
+    script(src='/js/time.js')
+    script(src='/js/jquery-3.2.1.min.js')
+    script(src='/js/uikit.min.js')
+    script(src='/js/uikit-icons.min.js')
+    
+    block scripts
