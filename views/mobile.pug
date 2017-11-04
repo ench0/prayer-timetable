@@ -29,6 +29,26 @@ block off-canvas
                         input.uk-checkbox.uk-margin-right(type="checkbox" name="arabic" title="Arabic")
                         | Arabic
 
+                div.uk-margin
+                    label.uk-form-label(for='themecol') Theme:
+                    select.uk-select(class="uk-width-1-2@s" name='themecol') 
+                        each colour in [["#cee3ed", "blue"], ["#daeae4", "green"], ["#f9c998", "orange"], ["#ccc", "grey"], ["#fce0e0", "red"]]
+                            if colour[0] == mobset[3]
+                                option(selected='selected' value=colour[0])=colour[1]
+                            else
+                                option(value=colour[0])= colour[1]
+
+                    select.uk-select(class="uk-width-1-2@s" name='themeimg') 
+                        each img in [["/img/marble.png", "marble"], ["/img/morocco.png", "morocco"], ["/img/leaves.png", "leaves"], ["/img/dots.png", "dots"], ["/img/paper.png", "paper"]]
+                            if img[0] == mobset[4]
+                                option(selected='selected' value=img[0])=img[1]
+                            else
+                                option(value=img[0])= img[1]
+
+
+
+
+
                 button.uk-button.uk-button-default.uk-margin(type='submit') Submit
 
 block content
@@ -45,7 +65,7 @@ block content
 
 
     //- LAYOUT TABLE
-    table.uk-height-viewport.uk-width-1.uk-table.uk-table-divider.uk-table-middle.uk-margin-remove.uk-table-small(uk-height-viewport="offset-top: true;offset-bottom: true;" style="background:"+settings.themecol+" url(\""+settings.themeimg+"\") 50%;margin:40px 0!important;")
+    table.uk-height-viewport.uk-width-1.uk-table.uk-table-divider.uk-table-middle.uk-margin-remove.uk-table-small(uk-height-viewport="offset-top: true;offset-bottom: true;" style="background:"+mobset[3]+" url(\""+mobset[4]+"\") 50%;margin:40px 0!important;")
         tr.uk-card.uk-card-body.uk-text-center
             td
                 if mobset[0]

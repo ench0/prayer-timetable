@@ -211,7 +211,21 @@ h2 {
         padding: 0 40px 40px;
     }
   }
-
+  .uk-select:not([multiple]):not([size]) {
+    height: inherit;
+  }
+  .uk-offcanvas-bar .uk-select:not([multiple]):not([size]) {
+    background-size: 25%;
+  }
   /* .uk-table-small td, .uk-table-small th {
     padding: 10px 40px!important;
   } */
+  option {
+    height: 20px;
+    background: #333;
+    font-size: 50%;
+  }
+  option:hover {
+    height: 20px;
+    background: #999;
+  }
