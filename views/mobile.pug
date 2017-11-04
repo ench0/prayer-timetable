@@ -56,7 +56,7 @@ block off-canvas
 
 block content
     //- TOP BAR
-    div.uk-section.uk-section-small.uk-section-secondary.uk-text-center.uk-padding-remove.uk-position-top
+    div.uk-section.uk-section-small.uk-section-secondary.uk-text-center.uk-padding-remove
         div.uk-container.uk-text-center
             h2.uk-text-uppercase=settings.title
                 a.uk-position-right(href='#offcanvas-usage', uk-toggle='' uk-icon="icon: menu;ratio: 2.6" style="padding:10px;")
@@ -68,7 +68,7 @@ block content
 
 
     //- LAYOUT TABLE
-    table.uk-height-viewport.uk-width-1.uk-table.uk-table-divider.uk-table-middle.uk-margin-remove.uk-table-small(uk-height-viewport="offset-top: true;offset-bottom: true;" style="background:"+mobset[3]+" url(\""+mobset[4]+"\") 50%;margin:40px 0!important;")
+    table.uk-height-viewport.uk-width-1.uk-table.uk-table-divider.uk-table-middle.uk-margin-remove.uk-table-small(uk-height-viewport="offset-top: true;offset-bottom: true;" style="background:"+mobset[3]+" url(\""+mobset[4]+"\") 50%;")
         tr.uk-card.uk-card-body.uk-text-center
             td
                 if mobset[0]
@@ -127,7 +127,7 @@ block content
     //- BOTTOM BAR
     - if(((settings.jummuahtime).split(":"))[1] < 10) var jummuahtime = ((settings.jummuahtime).split(":"))[0] + ": 0" + ((settings.jummuahtime).split(":"))[1]; else var jummuahtime = settings.jummuahtime;
 
-    div.uk-section.uk-section-xsmall.uk-section-secondary.uk-text-center.uk-padding-remove.uk-position-bottom
+    div.uk-section.uk-section-xsmall.uk-section-secondary.uk-text-center.uk-padding-remove
         div.uk-container.uk-text-center
             h2.uk-text-uppercase=settings.jummuahlabel + " " + jummuahtime
                 | 
