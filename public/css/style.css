@@ -229,3 +229,19 @@ h2 {
     height: 20px;
     background: #999;
   }
+  .uk-offcanvas-bar .uk-close {
+    color: rgba(255,255,255,1);
+  }
+  .uk-offcanvas-bar .uk-close svg {
+    height: 32px;
+    width: 32px;
+  }
+  .uk-table-divider>:first-child>tr:not(:first-child) {
+    border-top: 3px solid #fff;
+  }
+  .uk-table-divider>:first-child>tr:not(:first-child)::before {
+    border-top: 3px solid rgba(0,0,0,.25);
+    content: "";
+    width:100%;
+    position: absolute;
+  }
