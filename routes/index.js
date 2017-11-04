@@ -43,15 +43,48 @@ router.get('/timetable', function(req, res, next) {
   res.render('timetable', { title: 'Timetable', settings: settings, timetabledef: timetabledef, settingsdef: settingsdef });
 });
 router.get('/mobile', function(req, res, next) {
-  let analogue = req.query.analogue || req.cookies.mobset[0] || '0'
-  let jamaah = req.query.jamaah || req.cookies.mobset[1] || '1'
-  let arabic = req.query.arabic || req.cookies.mobset[2] || '1'
+    if (req.cookies.mobset) {
+        var mobset0 = req.cookies.mobset[0]
+        var mobset1 = req.cookies.mobset[1]
+        var mobset2 = req.cookies.mobset[2]
+    }
+
+  let analogue = req.query.analogue || mobset0 || '0'
+  let jamaah = req.query.jamaah || mobset1 || '1'
+  let arabic = req.query.arabic || mobset2 || '1'
 
   res.cookie('mobset', [analogue, jamaah, arabic], { maxAge: 31556952000, httpOnly: true });
   var mobset = req.cookies.mobset
   console.log("mobset:", mobset)
   res.render('mobile', { title: 'Timetable', settings: settings, mobset: mobset, timetabledef: timetabledef, settingsdef: settingsdef });
 });
+
+router.post('/mobile', function(req, res, next) {
+    if (req.cookies.mobset) {
+        var mobset0 = req.cookies.mobset[0]
+        var mobset1 = req.cookies.mobset[1]
+        var mobset2 = req.cookies.mobset[2]
+    }
+
+    console.log("req.query.arabic:", req.body)
+    // console.log('STATUS: ' + req.statusCode);
+    // console.log('HEADERS: ' + JSON.stringify(req.headers));
+
+  let analogue = req.body.analogue || mobset0 || '0'
+  let jamaah = req.body.jamaah || mobset1 || '1'
+  let arabic = req.body.arabic || mobset2 || '1'
+
+  console.log("analogue:",analogue,"jamaah:",jamaah,"arabic:",arabic)
+  
+  res.cookie('mobset', [analogue, jamaah, arabic], { maxAge: 31556952000, httpOnly: false }).send('Cookie is set');
+
+  var mobset = req.cookies.mobset
+//   console.log("cookies:", req.cookies)
+  console.log("mobset:", mobset)
+  return
+});
+
+
 
 
 /* GET request for creating a Genre. NOTE This must come before route that displays Genre (uses id) */

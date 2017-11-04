@@ -14,6 +14,8 @@ var users = require('./routes/users');
 var api = require('./routes/api');
 
 var app = express();
+app.use(cookieParser());
+
 app.locals.email = 'ensar@farend.net';
 
 // view engine setup
@@ -28,7 +30,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(expressValidator() ); // Add this after the bodyParser middlewares!
 
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);

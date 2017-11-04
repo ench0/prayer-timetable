@@ -6,16 +6,23 @@ block content
     div.uk-section.uk-section-small.uk-section-secondary.uk-text-center.uk-padding-remove.uk-position-top
         div.uk-container.uk-text-center
             h2.uk-text-uppercase=settings.title
-                span=mobset
+                |  
+            span analogue/jamaah/arabic
+                | 
+            span=mobset
+            label
+                //- input#arabic.uk-checkbox(type="checkbox" value=1 checked name="but1")
+                input#check.uk-checkbox(type="checkbox" name="arabic" value="FALSE" title="Action 1")
+
 
     //- TABLE
     table.uk-height-viewport.uk-width-1.uk-table.uk-table-divider.uk-table-middle.uk-margin-remove.uk-table-small(uk-height-viewport="offset-top: true;offset-bottom: true;" style="background:"+settings.themecol+" url(\""+settings.themeimg+"\") 50%;margin:40px 0!important;")
         tr.uk-card.uk-card-body.uk-text-center
             td
-                if settings.clock == "digital"
-                    include inc/clock-digital
-                else if settings.clock == "analogue"
+                if settings.clock == "analogue"
                     include inc/clock-analogue
+                else
+                    include inc/clock-digital
 
         tr.uk-card.uk-card-body.uk-text-center
             td#date.uk-text-uppercase(style="font-size:90%;") date
@@ -62,7 +69,6 @@ block content
                 span#ramadan
                 a#update(href) upd
                 span#mm kkoo
-                input#arabic(type="checkbox" value="val_1" name="but1")
                 span Click!
 
 
@@ -72,22 +78,61 @@ block scripts
         script(src='/js/clock.js')
     
     script.
-        $("arabic").click(function(e) {
-            e.preventDefault();
+        $("#check").change(function () {
+            if($(this).is(':checked')) { console.log("checked"); $(this).val('1');}
+            else {console.log("unchecked"); $(this).val('0');}
+
+            //- var value = $(this).val();
+            var analogue = $("#analogue").val();
+            var jamaah = $("#jamaah").val();
+            var arabic = $("#arabic").val();
+            console.log("analogue:",analogue,"jamaah:",jamaah,"arabic:",arabic)
+
             $.ajax({
-                type: "GET",
-                url: "/mobile?arabic=1",
-                data: { 
-                    jamaah: $(this).val(), // < note use of 'this' here
+                type: "POST",
+                url: "/mobile",
+                //- async: true,
+                data: {
+                    analogue: analogue,
+                    jamaah: jamaah,
+                    arabic: arabic
                 },
-                success: function(result) {
-                    alert('ok');
-                },
-                error: function(result) {
-                    alert('error');
+                success: function (msg) {
+                    //- alert('Success');
+                    console.log("Posted successfully!")
+                    //- if (msg != 'success') {
+                    //-     alert('Fail');
+                    //- }
                 }
             });
         });
+
+
+        //- $("#arabic").change(function(e) {
+        //-     e.preventDefault();
+            
+        //-     $.ajax({
+        //-         type: "GET",
+        //-         //- url: "/mobile?arabic=1",
+        //-         url: "/mobile",
+        //-         data: { 
+        //-             jamaah: $(this).val(), // < note use of 'this' here
+        //-         },
+        //-         success: function(result) {
+        //-             //- var koko = $(this).val()
+        //-             alert('ok');
+        //-             console.log("result:", result)
+        //-             //- console.log("koko:", koko)
+        //-         },
+        //-         error: function(result) {
+        //-             alert('error');
+        //-         }
+        //-     });
+        //- });
+
+
+
+
         //- $('#update').click($("#mm").load("/admin #mm"));
 
         //- $(document).ready(function () {

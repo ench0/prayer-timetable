@@ -16,10 +16,11 @@ block content
     table.uk-height-viewport.uk-width-1.uk-table.uk-table-divider.uk-table-middle.uk-margin-remove.uk-table-small(uk-height-viewport="offset-top: true;offset-bottom: true;" style="background:"+settings.themecol+" url(\""+settings.themeimg+"\") 50%;margin:40px 0!important;")
         tr.uk-card.uk-card-body.uk-text-center
             td
-                if settings.clock == "digital"
-                    include inc/clock-digital
-                else if settings.clock == "analogue"
+                if settings.clock == "analogue"
                     include inc/clock-analogue
+                else
+                    include inc/clock-digital
+
 
         tr.uk-card.uk-card-body.uk-text-center
             td#date.uk-text-uppercase(style="font-size:90%;") date
