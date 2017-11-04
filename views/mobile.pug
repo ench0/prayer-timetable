@@ -22,7 +22,7 @@ block off-canvas
                         input.uk-checkbox.uk-margin-right(type="checkbox" name="jamaah" title="Jamaah")
                         | Jamaah
                 div.uk-margin
-                    if mobset[1] 
+                    if mobset[2] 
                         input.uk-checkbox.uk-margin-right(type="checkbox" name="arabic" checked title="Arabic")
                         | Arabic
                     else
@@ -36,7 +36,7 @@ block content
     div.uk-section.uk-section-small.uk-section-secondary.uk-text-center.uk-padding-remove.uk-position-top
         div.uk-container.uk-text-center
             h2.uk-text-uppercase=settings.title
-                a.uk-position-right(href='#offcanvas-usage', uk-toggle='' uk-icon="icon: menu;ratio: 2")
+                a.uk-position-right(href='#offcanvas-usage', uk-toggle='' uk-icon="icon: menu;ratio: 2.6" style="padding:10px;")
             //-     |  
             //- span analogue/jamaah/arabic
             //-     | 
@@ -44,7 +44,7 @@ block content
 
 
 
-    //- TABLE
+    //- LAYOUT TABLE
     table.uk-height-viewport.uk-width-1.uk-table.uk-table-divider.uk-table-middle.uk-margin-remove.uk-table-small(uk-height-viewport="offset-top: true;offset-bottom: true;" style="background:"+settings.themecol+" url(\""+settings.themeimg+"\") 50%;margin:40px 0!important;")
         tr.uk-card.uk-card-body.uk-text-center
             td
@@ -59,7 +59,8 @@ block content
 
         tr.uk-card.uk-card-body.uk-text-center
             td(style="padding:0 30px!important;margin:0!important;")
-                table.uk-table.uk-table-divider.uk-table-middle
+                //- PRAYER TIMETABLE
+                table#ptt.uk-table.uk-table-divider.uk-table-middle.uk-padding
                     thead
                         tr
                             th.uk-text-left= settings.prayerlabel
@@ -85,6 +86,8 @@ block content
                                     td.uk-text-right(id='prayer-time-'+i)
                                 if mobset[1]
                                     td(id='jamaah-time-'+i)
+                                else
+                                    td.uk-invisible(id='jamaah-time-'+i hidden)
                                 if mobset[2]
                                     td.uk-text-right.arabic= val[1]
                                 - i++
@@ -106,14 +109,11 @@ block content
             h2.uk-text-uppercase=settings.jummuahlabel + " " + jummuahtime
                 | 
                 span#ramadan
-                a#update(href) upd
-                span#mm kkoo
-                span Click!
 
 
 
 block scripts
-    if settings.clock == "analogue"
+    if mobset[0]
         script(src='/js/clock.js')
     
     //- script.

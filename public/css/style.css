@@ -12,6 +12,10 @@ h1, h2, h3, h4, h5 {
     font-family: "Changa",'Helvetica Neue',Arial,Helvetica,sans-serif;
     font-weight: 200;/*200 500*/
 }
+h2 {
+  font-size: 80%;
+  padding: 10px;
+}
 
 /*refresh*/
 #refresh {
@@ -207,3 +211,7 @@ h1, h2, h3, h4, h5 {
         padding: 0 40px 40px;
     }
   }
+
+  /* .uk-table-small td, .uk-table-small th {
+    padding: 10px 40px!important;
+  } */

@@ -50,8 +50,8 @@ router.get('/mobile', function(req, res, next) {
     }
 
   let analogue = req.query.analogue || mobset0 || ''
-  let jamaah = req.query.jamaah || mobset1 || 'on'
-  let arabic = req.query.arabic || mobset2 || 'on'
+  let jamaah = req.query.jamaah || mobset1 || ''
+  let arabic = req.query.arabic || mobset2 || ''
 
   // res.cookie('mobset', [analogue, jamaah, arabic], { maxAge: 31556952000, httpOnly: true });
   var mobset = req.cookies.mobset
