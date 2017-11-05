@@ -17,7 +17,7 @@ const cityfile = './public/db/city.js'
 const settingsfile = './public/db/settings.js'
 
 
-// check city file
+// check browser city file
 if (fs.existsSync(cityfile) && fs.statSync(cityfile).size>0) {
     console.log("#####city file ok#####")
     console.log("city file size: "+fs.statSync(cityfile).size)
@@ -64,6 +64,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: settings.title });
 });
 router.get('/timetable', function(req, res, next) {
+    console.log("settings")
   res.render('timetable', { title: 'Timetable', settings: settings, timetabledef: timetabledef, settingsdef: settingsdef });
 });
 

@@ -4,7 +4,15 @@
     .marker.fourten
     .marker.fiveeleven
 
-    .inner_face(style="background:"+mobset[3]+" url(\""+mobset[4]+"\") repeat -25%;")
+
+    if mobset
+        - var color = mobset[3]
+        - var bg = mobset[4]
+    else
+        - var color = settings.themecol
+        - var bg = settings.themeimg
+
+    .inner_face(style="background:"+color+" url(\""+bg+"\") repeat -25%;")
         .hand.hour
         .hand.minute
         .hand.second

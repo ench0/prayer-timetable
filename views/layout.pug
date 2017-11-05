@@ -1,5 +1,5 @@
 doctype html
-html(lang="nl")
+html
   head
     title= title
     link(rel='stylesheet', href='/css/normalize.css')
@@ -34,9 +34,11 @@ html(lang="nl")
     script(src='/js/moment.min.js')
     script(src='/js/moment-timezone-with-data.js')
     script(src='/js/moment-hijri.js')
-    script!= settingsdef
-    script!= timetabledef
-    //- script(src='/js/db/timetable.js')
+    //- script!= settingsdef
+    //- script!= timetabledef
+    script(src='/db/city.js')
+    script(src='/db/settings.js')
+
     script(src='/js/time.js')
     script(src='/js/jquery.min.js')
     script(src='/js/jquery.vticker.min.js')
