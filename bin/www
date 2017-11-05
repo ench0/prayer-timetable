@@ -5,24 +5,25 @@
  */
 'use strict';
 
-var app = require('../index').app;
-var debug = require('debug')('js-prayer-timetable:server');
-var http = require('http');
-var reload = require('reload');
+const app = require('../index').app;
+const debug = require('debug')('js-prayer-timetable:server');
+const http = require('http');
+const reload = require('reload');
 // var watch = require('watch')
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+let port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+const server = http.createServer(app);
+
 
 
 
