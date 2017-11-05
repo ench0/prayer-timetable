@@ -62,4 +62,6 @@ config/user.pass
 
 # OS generated files
 .DS_Store
-Thumbs.db
+Thumbs.d
+
+public/db
