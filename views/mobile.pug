@@ -1,5 +1,9 @@
 extends layout_mobile
 
+block head
+    if mobset[0]
+        link(rel='stylesheet', href='/css/css3clock.css')
+
 block off-canvas
     #offcanvas-usage(uk-offcanvas='')
         .uk-offcanvas-bar.uk-preserve-color
@@ -60,11 +64,6 @@ block content
         div.uk-container.uk-text-center
             h2.uk-text-uppercase=settings.title
                 a.uk-position-top-right(href='#offcanvas-usage', uk-toggle='' uk-icon="icon: menu;ratio: 2.6" style="padding:10px;")
-            //-     |  
-            //- span analogue/jamaah/arabic
-            //-     | 
-            //- span=mobset
-
 
 
     //- LAYOUT TABLE
@@ -121,8 +120,6 @@ block content
                     span#pending-name.uk-text-right(style="margin-right:10px;") Prayer
                     span#timetoprayer.uk-text-left(style="margin-left:10px;") Countdown
                                 
-        //- tr
-
 
     //- BOTTOM BAR
     - if(((settings.jummuahtime).split(":"))[1] < 10) var jummuahtime = ((settings.jummuahtime).split(":"))[0] + ": 0" + ((settings.jummuahtime).split(":"))[1]; else var jummuahtime = settings.jummuahtime;
@@ -143,35 +140,4 @@ block content
 
 block scripts
     if mobset[0]
-        script(src='/js/clock.js')
-    
-    //- script.
-    //-     $("#check").change(function () {
-    //-         if($(this).is(':checked')) { console.log("checked"); $(this).val('1');}
-    //-         else {console.log("unchecked"); $(this).val('0');}
-
-    //-         //- var value = $(this).val();
-    //-         var analogue = $("#analogue").val();
-    //-         var jamaah = $("#jamaah").val();
-    //-         var arabic = $("#arabic").val();
-    //-         console.log("analogue:",analogue,"jamaah:",jamaah,"arabic:",arabic)
-
-    //-         $.ajax({
-    //-             type: "POST",
-    //-             url: "/mobile",
-    //-             //- async: true,
-    //-             data: {
-    //-                 analogue: analogue,
-    //-                 jamaah: jamaah,
-    //-                 arabic: arabic
-    //-             },
-    //-             success: function (msg) {
-    //-                 //- alert('Success');
-    //-                 console.log("Posted successfully!")
-    //-                 //- if (msg != 'success') {
-    //-                 //-     alert('Fail');
-    //-                 //- }
-    //-             }
-    //-         });
-    //-     });
-
+        script(src='/js/clock.js' async)

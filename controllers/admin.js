@@ -90,9 +90,26 @@ exports.admin_post = function(req, res, next) {
             console.error("settings:")
             console.error(settingsnew)
         })
-        // jsonfile.writeFileSync(file, settingsnew, {spaces: 2})
 
-        // fs.writeJsonSync(file, settingsnew)
+        // BROWSER FILES
+        console.log('!!!!!!!!!!!!')
+        console.log(settings.city, settingsnew.city)
+        console.log('!!!!!!!!!!!!')
+        console.log(settings.city != settingsnew.city)
+        if (settings.city != settingsnew.city) {
+            console.log("New city timetable written!")
+            const timetable = require('../controllers/timetable');        
+            const timetabledef = "var timetable="+JSON.stringify(timetable);
+            const cityfile = './public/db/city.js'
+            fs.writeFileSync(cityfile, timetabledef)
+        }
+        
+        const settingsdef = "var settings="+JSON.stringify(settings);
+        const settingsfile = './public/db/settings.js'
+        fs.writeFileSync(settingsfile, settingsdef)
+ 
+        
+
 
         console.error("$$$finished file write")
         

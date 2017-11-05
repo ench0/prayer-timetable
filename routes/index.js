@@ -13,6 +13,30 @@ const fs = require('fs-extra')
 const confdir = './config'
 const passfile = './config/user.pass'
 
+const cityfile = './public/db/city.js'
+const settingsfile = './public/db/settings.js'
+
+
+// check city file
+if (fs.existsSync(cityfile) && fs.statSync(cityfile).size>0) {
+    console.log("#####city file ok#####")
+    console.log("city file size: "+fs.statSync(cityfile).size)
+}
+else {
+    console.log("#####pass write#####")
+    fs.writeFileSync(cityfile, timetabledef)
+}
+
+// check browser settings file
+if (fs.existsSync(settingsfile) && fs.statSync(settingsfile).size>0) {
+    console.log("#####settings file ok#####")
+    console.log("settings file size: "+fs.statSync(settingsfile).size)
+}
+else {
+    console.log("#####pass write#####")
+    fs.writeFileSync(settingsfile, settingsdef)
+}
+
 
 
 // check user pass file
