@@ -7,8 +7,9 @@ module.exports = {
 
     // First application
     {
-      name      : 'MAIN',
+      name      : 'timetable',
       script    : 'bin/www',
+      port      : 3001,
       env: {
         COMMON_VARIABLE: 'true'
       },
