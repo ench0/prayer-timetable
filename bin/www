@@ -9,7 +9,7 @@ const app = require('../index').app;
 const debug = require('debug')('js-prayer-timetable:server');
 const http = require('http');
 const reload = require('reload');
-// var watch = require('watch')
+const watch = require('watch')
 
 /**
  * Get port from environment and store in Express.
@@ -28,13 +28,14 @@ const server = http.createServer(app);
 
 
 // Reload code here
-reload(server, app);
-// reloadServer = reload(server, app);
+// reload(server, app);
+const reloadServer = reload(server, app);
 
-// watch.watchTree(__dirname + "/public", function (f, curr, prev) {
-//     // Fire server-side reload event
-//     reloadServer.reload();
-// });
+watch.watchTree(__dirname + "/../public/db/", function (f, curr, prev) {
+    // Fire server-side reload event
+    
+    reloadServer.reload();
+});
 
 /**
  * Listen on provided port, on all network interfaces.
