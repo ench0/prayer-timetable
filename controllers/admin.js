@@ -115,7 +115,7 @@ exports.admin_post = function(req, res, next) {
         
         //restart
         function puts(error, stdout, stderr) { console.log(stdout) }
-        exec("pm2 reload www", puts);
+        exec("pm2 reload presenter", puts);
 
         res.redirect("/view/?message=Success! Please refresh this page to see the updated version.");
         // res.render('view', { title: 'View Timetable!', settings: settings, time: time, message: "Success! Please refresh this page to see the updated version." });
