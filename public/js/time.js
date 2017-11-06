@@ -314,16 +314,6 @@ const timeDisp = (function() {
     }
   }
 
-
-  // // no overlay on main
-  if (document.getElementById("present")) {
-    const targetDiv = document.getElementById("overlay");
-    // const targetDiv = document.getElementById("main").getElementsByClassName("overlay")[0];
-    targetDiv.style = "background:rgba(255,255,255,0)";
-  }
-  // console.log((moment().format("d")));
-
-
   // Ramadan countdown
   if (hijriMonth == "8" && hijriDay != "30")
   {
