@@ -28,14 +28,14 @@ const server = http.createServer(app);
 
 
 // Reload code here
-// reload(server, app);
-const reloadServer = reload(server, app);
+reload(server, app);
+// const reloadServer = reload(server, app);
 
-watch.watchTree(__dirname + "/../public/db/", function (f, curr, prev) {
-    // Fire server-side reload event
+// watch.watchTree(__dirname + "/../public/db/", function (f, curr, prev) {
+//     // Fire server-side reload event
     
-    reloadServer.reload();
-});
+//     reloadServer.reload();
+// });
 
 /**
  * Listen on provided port, on all network interfaces.
