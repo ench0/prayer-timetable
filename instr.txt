@@ -1,4 +1,0 @@
-test
-
-yarn global add htpasswd
-htpasswd -c user.pass admin

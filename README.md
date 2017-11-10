@@ -4,17 +4,37 @@ Muslim prayer timetable app for deployment on Raspberry Pi. It is meant to be us
 
 This software is provided as-is, with no warranty of any kind. I provide it for free and do not expect and ask for any compensation. What's more, I will help you setup your own presentation screen and even install for free, but you will cover the postal bills in case you send me your own Raspberry Pi for setup.
 
-Instructions on deployment coming soon, for now you're on your own. :)
+Instructions on full deployment coming soon, for now you're on your own. :)
+
+## Quick Start
+
+### Standalone app:
+
+    git clone https://github.com/ench0/prayer-timetable
+
+### Express module:
+
+    require("prayer-timetable")
+
+Router file:
+
+    router.get('/timetable', function(req, res, next) {
+    res.render('timetable', { title: 'Timetable', settings: settings, timetabledef: timetabledef, settingsdef: settingsdef });
+    });
 
 Home page: your_IP:3000
+
 Main timetable display: your_IP:3000/timetable
+
 Mobile view: your_IP:3000/mobile
+
 Admin area: your_IP:3000/admin
 
 Default username/password for admin area: admin/admin
 
 To manually change the password, use:
-htpasswd -Bc ./config/user.pass admin
+    npm i -g htpasswd
+    htpasswd -Bc ./config/user.pass admin
 
 Password can be changed from the admin area as well. 
 
