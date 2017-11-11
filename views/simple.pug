@@ -1,0 +1,30 @@
+extends layout
+
+block content
+
+
+    div#datetime
+        div#time date
+        div#date time
+
+    div#ptt
+        - i = 0;
+        - names = [[settings.names[0],'الفجر'], [settings.names[1], 'الشروق'], [settings.names[2], 'الظهر'], [settings.names[3], 'العصر'], [settings.names[4], 'المغرب'], [settings.names[5], 'العشاء']]
+        each val in names
+            div(id="row-"+i)
+                div= val[0]
+                div(id='prayer-time-'+i)
+                div(id='jamaah-time-'+i)
+                - i++
+
+    div#countdown
+        div#pending-name Prayer
+        div#timetoprayer Countdown
+                                
+        //- tr
+
+
+    div#ramadan
+
+    script.
+        var hidejamaah

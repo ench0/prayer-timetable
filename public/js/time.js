@@ -5,6 +5,7 @@
  * 		@license Used momentjs library for time manipulation, rest of code free for distribution provided this info is included.
  */
 'use strict';
+
 let city
 if (settings.language == "nl") {
     const monthsShortWithDots = 'jan._feb._mrt._apr._mei_jun._jul._aug._sep._okt._nov._dec.'.split('_');
@@ -156,48 +157,35 @@ const times = function() {
 	let daybegin = moment().startOf('day').add(tomorrow, 'day');
 	let dayend = moment().endOf('day').add(tomorrow, 'day');
 
-//   console.log(moment().add(1, 'day').isBetween(isha.time, dayend))
-
-// console.log(moment().add(1, 'day'))
-
   let next, current
   if (isha.jamaahtime.isBefore(moment()) && tomorrow == 0) {
     next = fajr; current = isha; tomorrow = 1;
-    // console.log("opt00");
   }
   else if (isha.time.isBefore(moment())) {
     next = fajr; current = isha; tomorrow = 0;
-    // console.log("opt01");
   }
   else if (maghrib.time.isBefore(moment())) {
     next = isha; current = maghrib; tomorrow = 0;
-    // console.log("opt02", current);
   }
   else if (asr.time.isBefore(moment())) {
     next = maghrib; current = asr; tomorrow = 0;
-    // console.log("opt03");
   }
   else if (dhuhr.time.isBefore(moment())) {
     next = asr; current = dhuhr; tomorrow = 0;
-    // console.log("opt04");
   }
   else if (fajr.time.isBefore(moment())) {
     next = dhuhr; current = fajr; tomorrow = 0;
-    // console.log("opt05");
   }
   // after midnight, before fajr
   else if (moment().add(tomorrow, 'day').isBefore(fajr.time)) {
     next = fajr; current = isha; tomorrow = 0;
-    // console.log("opt06");
   }
   // after isha, before midnight
   else if (moment().isBefore(moment().endOf('day').add(tomorrow, 'day')) &&  moment().add(tomorrow, 'day').isAfter(isha.time)) {
     next = fajr; current = isha; tomorrow = 1;
-    // console.log("opt07");
   }
   else {
     next = fajr; current = isha; tomorrow = 1;
-    // console.log("opt09");
   }
 
 //              0     1        2      3    4        5     6    7     8
@@ -218,9 +206,8 @@ const timeDisp = (function() {
   let hijriDay = moment().add((parseInt(settings.hijrioffset) + parseInt(tomorrow)), 'day').format("iD");
   let hijriDaysLeft = moment.duration( moment().endOf('imonth').diff(moment().add((parseInt(settings.hijrioffset) + parseInt(tomorrow)), 'day')) )
 
-
-	document.getElementById("time").innerHTML = moment().format("H:mm:ss");
-	document.getElementById("date").innerHTML = gregorian + "<br />" + hijri;
+  document.getElementById("time") ? document.getElementById("time").innerHTML = moment().format("H:mm:ss") : null;
+	document.getElementById("date") ? document.getElementById("date").innerHTML = gregorian + "<br />" + hijri : null;
 
   // Countdown
   let nextname
@@ -236,8 +223,8 @@ const timeDisp = (function() {
     document.getElementById("timetoprayer").innerHTML = " ";
   }
   else {
-    document.getElementById("pending-name").innerHTML = nextname;
-    document.getElementById("timetoprayer").innerHTML = countdowndisp;
+    document.getElementById("pending-name") ? document.getElementById("pending-name").innerHTML = nextname : null;
+    document.getElementById("timetoprayer") ? document.getElementById("timetoprayer").innerHTML = countdowndisp : null;
   }
 
 
@@ -256,13 +243,13 @@ const timeDisp = (function() {
         document.getElementById("jamaah-time-"+list[i]).innerHTML = "maghrib";
         }
         else {
-            document.getElementById("prayer-time-"+i).innerHTML = def[i].disp;
-            document.getElementById("jamaah-time-"+i).innerHTML = def[i].jamaahdisp;
+            document.getElementById("prayer-time-"+i) ? document.getElementById("prayer-time-"+i).innerHTML = def[i].disp : null;
+            document.getElementById("jamaah-time-"+i) ? document.getElementById("jamaah-time-"+i).innerHTML = def[i].jamaahdisp : null;
         }
 
         // highlight next
-        document.getElementById("row-"+i).className = "row line";//reset
-        document.getElementById("row-"+def[7].num).className = "row line next";
+        document.getElementById("row-"+i) ? document.getElementById("row-"+i).className = "row line" : null;//reset
+        document.getElementById("row-"+def[7].num) ? document.getElementById("row-"+def[7].num).className = "row line next" : null;
 
         let starttime
         if (def[8]['num'] == 5 && tomorrow == 1) starttime = moment(); else if (def[8]['num'] == 5 && tomorrow == 0) starttime = def[8].time; else starttime = def[8].time;
@@ -270,15 +257,15 @@ const timeDisp = (function() {
         if (!hidejamaah) { // if hidejamaah is not set in mobile.pug
           if ((moment().add(tomorrow, 'day')).isBetween(starttime, def[8].jamaahtime))
           {
-            document.getElementById("pending-name").innerHTML = settings.preparelabel + " " + def[8].name + " " + settings.prayerlabel;
-            document.getElementById("timetoprayer").innerHTML = timeToJamaah.hours + ':' + timeToJamaah.minutes + ':' + timeToJamaah.seconds;
+            document.getElementById("pending-name") ? document.getElementById("pending-name").innerHTML = settings.preparelabel + " " + def[8].name + " " + settings.prayerlabel : null;
+            document.getElementById("timetoprayer") ? document.getElementById("timetoprayer").innerHTML = timeToJamaah.hours + ':' + timeToJamaah.minutes + ':' + timeToJamaah.seconds : null;
           }
         }
 
         if ((moment().add(tomorrow, 'day')).isBetween(moment().startOf('day'), moment().startOf('day').add(5, 's')))
         {
-          document.getElementById("pending-name").innerHTML = "Midnight";
-          document.getElementById("timetoprayer").innerHTML = "Time";
+          document.getElementById("pending-name") ? document.getElementById("pending-name").innerHTML = "Midnight" : null;
+          document.getElementById("timetoprayer") ? document.getElementById("timetoprayer").innerHTML = "Time" : null;
         }
 	}
 
@@ -297,7 +284,6 @@ const timeDisp = (function() {
       //   console.log("ramadan time")    
       document.getElementById("overlay").style = "background:rgba(0,0,0,.85);z-index:1000;";
       document.getElementById("overlay").innerHTML = "Taraweeh Prayer<br/>"+moment().format('iDD iMMMM iYYYY')+"<br/>"+moment().format('DD MMMM YYYY');
-      // document.getElementById('overlay').getElementsByTagName('div').innerHTML = "dd"
     }
     // Friday Prayer
     else if ( (moment().format("d") == '5') &&
@@ -317,18 +303,17 @@ const timeDisp = (function() {
   // Ramadan countdown
   if (hijriMonth == "8" && hijriDay != "30")
   {
-    document.getElementById("ramadan").style = "display: inline;";
-    document.getElementById("ramadan").innerHTML = " | " + hijriDaysLeft.humanize()+" "+settings.ramadancountdownlabel;
+    if (document.getElementById("ramadan")) {
+      document.getElementById("ramadan").style = "display: inline;";
+      document.getElementById("ramadan").innerHTML = " | " + hijriDaysLeft.humanize()+" "+settings.ramadancountdownlabel;
+    }
   }
-
-    // setTimeout(function(){timeDisp()}, 1000);
 
 });
 
 // timeDisp();
 
 const myInt = setInterval(function(){ timeDisp() }, 1000);
-
 
 
 function appendZero(unit) {
