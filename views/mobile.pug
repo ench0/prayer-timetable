@@ -43,7 +43,7 @@ block off-canvas
                                 option(value=colour[0])= colour[1]
 
                     select.uk-select(class="uk-width-1-2@s" name='themeimg') 
-                        each img in [["/img/marble.png", "marble"], ["/img/morocco.png", "morocco"], ["/img/leaves.png", "leaves"], ["/img/dots.png", "dots"], ["/img/paper.png", "paper"]]
+                        each img in [["/img/marble.jpg", "marble"], ["/img/morocco.jpg", "morocco"], ["/img/leaves.jpg", "leaves"], ["/img/dots.jpg", "dots"], ["/img/paper.jpg", "paper"]]
                             if img[0] == mobset[4]
                                 option(selected='selected' value=img[0])=img[1]
                             else
@@ -68,21 +68,21 @@ block content
 
     //- LAYOUT TABLE
     table.uk-height-viewport.uk-width-1.uk-table.uk-table-divider.uk-table-middle.uk-margin-remove.uk-table-small(uk-height-viewport="offset-top: true;offset-bottom: true;" style="background:"+mobset[3]+" url(\""+mobset[4]+"\") 50%;")
-        tr.uk-card.uk-card-body.uk-text-center
+        tr.uk-card.uk-card-body.uk-text-center(style="background:"+mobset[3]+";opacity: 0.85;")
             td
                 if mobset[0]
                     include inc/clock-analogue
                 else
                     include inc/clock-digital
 
-        tr.uk-card.uk-card-body.uk-text-center
+        tr.uk-card.uk-card-body.uk-text-center(style="background:"+mobset[3]+";opacity: 0.85;")
             //- date
             td.uk-text-uppercase(style="font-size:90%;") 
                 div#gregorian
                 div#hijri
 
 
-        tr.uk-card.uk-card-body.uk-text-center
+        tr.uk-card.uk-card-body.uk-text-center(style="background:"+mobset[3]+";opacity: 0.85;")
             td(style="padding:0 30px!important;margin:0!important;")
                 //- PRAYER TIMETABLE
                 table#ptt.uk-table.uk-table-divider.uk-table-middle.uk-padding
@@ -99,7 +99,7 @@ block content
                                 th.uk-text-right.arabic صلاة
 
 
-                    tbody.uk-text-uppercase.uk-text-center(style="background:rgba(255,255,255,.35);")
+                    tbody.uk-text-uppercase.uk-text-center(style="background:rgba(255,255,255,.85);")
                         - i = 0;
                         - names = [[settings.names[0],'الفجر'], [settings.names[1], 'الشروق'], [settings.names[2], 'الظهر'], [settings.names[3], 'العصر'], [settings.names[4], 'المغرب'], [settings.names[5], 'العشاء']]
                         each val in names
@@ -117,7 +117,7 @@ block content
                                     td.uk-text-right.arabic= val[1]
                                 - i++
 
-        tr.uk-card.uk-card-body.uk-text-center
+        tr.uk-card.uk-card-body.uk-text-center(style="background:"+mobset[3]+";opacity: 0.85;")
             td
                 div.uk-text-uppercase
                     //- Prayer

@@ -79,14 +79,14 @@ router.get('/simple', function(req, res, next) {
 router.get('/mobile', function(req, res, next) {
 
   if (req.cookies.mobset) var mobset = req.cookies.mobset
-  else mobset = ['', '', '', '#ccc', '/img/paper.png', '']
+  else mobset = ['', '', '', '#ee9933', '/img/marble.jpg', '']
   res.render('mobile', { title: 'Timetable', settings: settings, mobset:mobset, timetabledef: timetabledef, settingsdef: settingsdef, body: req.body });
   
 });
 
 router.post('/mobile', function(req, res, next) {
  
-  res.cookie('mobset', [req.body.analogue || '', req.body.jamaah || '', req.body.arabic || '', req.body.themecol || '#ccc', req.body.themeimg || '/img/paper.png', 'cookies agree'], { maxAge: 31556952000, httpOnly: false })//.send('Cookie is set');
+  res.cookie('mobset', [req.body.analogue || '', req.body.jamaah || '', req.body.arabic || '', req.body.themecol || '#cc9933', req.body.themeimg || '/img/marble.jpg', 'cookies agree'], { maxAge: 31556952000, httpOnly: false })//.send('Cookie is set');
   res.redirect('/mobile')
 
 });

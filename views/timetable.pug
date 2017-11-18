@@ -13,8 +13,8 @@ block content
             h2.uk-text-uppercase=settings.title
 
     //- TABLE
-    table.uk-height-viewport.uk-width-1.uk-table.uk-table-divider.uk-table-middle.uk-margin-remove.uk-table-small(uk-height-viewport="offset-top: true;offset-bottom: true;" style="background:"+settings.themecol+" url(\""+settings.themeimg+"\") 50%;margin:40px 0!important;")
-        tr.uk-card.uk-card-body.uk-text-center
+    table.uk-height-viewport.uk-width-1.uk-table.uk-table-divider.uk-table-middle.uk-margin-remove.uk-table-small(uk-height-viewport="offset-top: true;offset-bottom: true;" style="background:"+settings.themecol+" url(\""+settings.themeimg+"\") 50%;margin:69px 0!important;")
+        tr.uk-card.uk-card-body.uk-text-center(style="background:"+settings.themecol+";opacity: 0.85;")
             td
                 if settings.clock == "analogue"
                     include inc/clock-analogue
@@ -22,14 +22,14 @@ block content
                     include inc/clock-digital
 
 
-        tr.uk-card.uk-card-body.uk-text-center
+        tr.uk-card.uk-card-body.uk-text-center(style="background:"+settings.themecol+";opacity: 0.85;")
             //- date
             td.uk-text-uppercase(style="font-size:90%;")
                 div#gregorian
                 div#hijri
 
 
-        tr.uk-card.uk-card-body.uk-text-center
+        tr.uk-card.uk-card-body.uk-text-center(style="background:"+settings.themecol+";opacity: 0.85;")
             td(style="padding:0 30px!important;margin:0!important;")
                 table.uk-table.uk-table-divider.uk-table-middle
                     thead
@@ -40,7 +40,7 @@ block content
                             th.uk-text-right.arabic صلاة
 
 
-                    tbody.uk-text-uppercase.uk-text-center(style="background:rgba(255,255,255,.35);")
+                    tbody.uk-text-uppercase.uk-text-center(style="background:rgba(255,255,255,.85);")
                         - i = 0;
                         - names = [[settings.names[0],'الفجر'], [settings.names[1], 'الشروق'], [settings.names[2], 'الظهر'], [settings.names[3], 'العصر'], [settings.names[4], 'المغرب'], [settings.names[5], 'العشاء']]
                         each val in names
@@ -51,7 +51,7 @@ block content
                                 td.uk-text-right.arabic= val[1]
                                 - i++
 
-        tr.uk-card.uk-card-body.uk-text-center
+        tr.uk-card.uk-card-body.uk-text-center(style="background:"+settings.themecol+";opacity: 0.85;")
             td
                 div.uk-text-uppercase
                     //- Prayer
@@ -62,7 +62,7 @@ block content
         //- tr
 
 
-        tr.uk-card.uk-card-body.uk-text-center
+        tr.uk-card.uk-card-body.uk-text-center(style="background:"+settings.themecol+";opacity: 0.85;")
             - var bodytext = settings.body.split("\r\n");
             - var announcements = settings.announcement.split("\r\n");
 
