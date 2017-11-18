@@ -21,6 +21,23 @@ html
                 font-weight: 500;
             }
 
+
+        script(src='/js/reload.js' async)
+
+        script(src='/js/moment.min.js')
+        script(src='/js/moment-timezone-with-data.js')
+        script(src='/js/moment-hijri.js')
+        script!= settingsdef
+        script!= timetabledef
+        //- script(src='/db/settings.js')
+        //- script(src='/db/city.js')
+        script(src='/js/time.js' async)
+
+        script(src='/js/jquery-3.2.1.min.js')
+        script(src='/js/uikit.min.js')
+        script(src='/js/uikit-icons.min.js')
+
+
     body#body(style="overflow: hidden;")
 
         
@@ -33,19 +50,6 @@ html
             block content
 
 
-    script(src='/js/reload.js' async)
 
-    script(src='/js/moment.min.js')
-    script(src='/js/moment-timezone-with-data.js')
-    script(src='/js/moment-hijri.js')
-    //- script!= settingsdef
-    //- script!= timetabledef
-    script(src='/db/settings.js')
-    script(src='/db/city.js')
-    script(src='/js/time.js' async)
-
-    script(src='/js/jquery-3.2.1.min.js')
-    script(src='/js/uikit.min.js')
-    script(src='/js/uikit-icons.min.js')
     
     block scripts

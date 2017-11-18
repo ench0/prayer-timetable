@@ -24,19 +24,14 @@ html
             font-weight: 500;
         }
 
-  body#body(style="overflow: hidden;")
-    block content
-
-
-
     script(src='/js/reload.js')
 
     script(src='/js/moment.min.js')
     script(src='/js/moment-timezone-with-data.js')
     script(src='/js/moment-hijri.js')
     script!= settingsdef
-    //- script!= timetabledef
-    script(src='/db/city.js')
+    script!= timetabledef
+    //- script(src='/db/city.js')
     //- script(src='/db/settings.js')
 
     script(src='/js/time.js')
@@ -44,5 +39,11 @@ html
     script(src='/js/jquery.vticker.min.js')
     script(src='/js/uikit.min.js')
     script(src='/js/uikit-icons.min.js')
+
+
+
+
+  body#body(style="overflow: hidden;")
+    block content
     
     block scripts

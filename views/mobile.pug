@@ -76,7 +76,10 @@ block content
                     include inc/clock-digital
 
         tr.uk-card.uk-card-body.uk-text-center
-            td#date.uk-text-uppercase(style="font-size:90%;") date
+            //- date
+            td.uk-text-uppercase(style="font-size:90%;") 
+                div#gregorian
+                div#hijri
 
 
         tr.uk-card.uk-card-body.uk-text-center
@@ -117,8 +120,10 @@ block content
         tr.uk-card.uk-card-body.uk-text-center
             td
                 div.uk-text-uppercase
-                    span#pending-name.uk-text-right(style="margin-right:10px;") Prayer
-                    span#timetoprayer.uk-text-left(style="margin-left:10px;") Countdown
+                    //- Prayer
+                    span#pending-name.uk-text-right(style="margin-right:10px;")
+                    //- Countdown 
+                    span#timetoprayer.uk-text-left(style="margin-left:10px;") 
                                 
 
     //- BOTTOM BAR
