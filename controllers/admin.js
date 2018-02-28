@@ -74,7 +74,8 @@ exports.admin_post = function(req, res, next) {
             "iqamahlabel":req.body.iqamahlabel,
             "preparelabel":req.body.preparelabel,
             "ramadancountdownlabel":req.body.ramadancountdownlabel,
-            "names":[req.body.name0,req.body.name1,req.body.name2,req.body.name3,req.body.name4,req.body.name5]
+            "names":[req.body.name0,req.body.name1,req.body.name2,req.body.name3,req.body.name4,req.body.name5],
+            "update": new Date().getTime()
         };
         
         // const file = __dirname+'/settings.json'
