@@ -104,42 +104,51 @@
             next = fajr;
             current = isha;
             tomorrow = 1;
-        } else if (isha.time.isBefore(moment())) {
+            console.log('case 1')
+        } else if (isha.time.isBefore(moment()) && tomorrow == 0) {
             next = fajr;
             current = isha;
-            tomorrow = 0;
+            tomorrow = 1;
+            console.log('case 2a')
         } else if (maghrib.time.isBefore(moment())) {
             next = isha;
             current = maghrib;
             tomorrow = 0;
+            console.log('case 3')
         } else if (asr.time.isBefore(moment())) {
             next = maghrib;
             current = asr;
             tomorrow = 0;
+            console.log('case 4')
         } else if (dhuhr.time.isBefore(moment())) {
             next = asr;
             current = dhuhr;
             tomorrow = 0;
+            console.log('case 5')
         } else if (fajr.time.isBefore(moment())) {
             next = dhuhr;
             current = fajr;
             tomorrow = 0;
+            console.log('case 6')
         }
         // after midnight, before fajr
         else if (moment().add(tomorrow, 'day').isBefore(fajr.time)) {
             next = fajr;
             current = isha;
             tomorrow = 0;
+            console.log('case 7')
         }
         // after isha, before midnight
         else if (moment().isBefore(moment().endOf('day').add(tomorrow, 'day')) && moment().add(tomorrow, 'day').isAfter(isha.time)) {
             next = fajr;
             current = isha;
             tomorrow = 1;
+            console.log('case 8')
         } else {
             next = fajr;
             current = isha;
             tomorrow = 1;
+            console.log('case 9')
         }
 
 
@@ -159,6 +168,7 @@
         timeToPrayer.hours = appendZero(timeToPrayer.hours());
         timeToPrayer.minutes = appendZero(timeToPrayer.minutes());
         timeToPrayer.seconds = appendZero(timeToPrayer.seconds());
+
         if (timeToPrayer.hours.length > 2) {
             countdowndisp = "0:00:00";
             nextname = isha.name
