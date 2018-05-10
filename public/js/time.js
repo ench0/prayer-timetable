@@ -225,8 +225,8 @@
 
             // set isha to after maghrib if join == on
             if (settings.join == "on" && i == "5") {
-                document.getElementById("prayer-time-" + list[i]).innerHTML = "with";
-                document.getElementById("jamaah-time-" + list[i]).innerHTML = "maghrib";
+                document.getElementById("prayer-time-" + i).innerHTML = "with";
+                document.getElementById("jamaah-time-" + i).innerHTML = "maghrib";
             } else {
                 document.getElementById("prayer-time-" + i) ? document.getElementById("prayer-time-" + i).innerHTML = def.times[i].disp : null;
                 document.getElementById("jamaah-time-" + i) ? document.getElementById("jamaah-time-" + i).innerHTML = def.times[i].jamaahdisp : null;
