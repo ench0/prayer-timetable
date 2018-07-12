@@ -1,5 +1,9 @@
 # Prayer timetable
 
+## This app is superceeded by prayer-timetable-react app
+
+### New app is more robust version, completely rewritten in React JS. This version is still usable if you need standalone app with admin interface built in. New app available at https://gitlab.com/ench0/prayer-timetable-react
+
 Muslim prayer timetable app for deployment on Raspberry Pi. It is meant to be used on public displays to show your local community's prayer times. Can be used in masjids, mosques or even home. Optimised for Full HD screens. NodeJS and Express powered, using UIKit for styling, Pug for template engine, Moment.js for time manipulation and more. Please note that this is at alpha stage and built specifically for my own needs.
 
 This software is provided as-is, with no warranty of any kind. I provide it for free and do not expect and ask for any compensation. What's more, I will help you setup your own presentation screen and even install for free, but you will cover the postal bills in case you send me your own Raspberry Pi for setup.
