@@ -22,7 +22,7 @@
     "jsonfile": "^2.4.0",
     "moment": "^2.17.1",
     "moment-hijri": "^2.0.1",
-    "moment-timezone": "^0.5.14",
+    "moment-timezone": "^0.5.35",
     "morgan": "~1.7.0",
     "pug": "^2.0.0-beta11",
     "reload": "^1.1.1",
