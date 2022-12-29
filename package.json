@@ -39,7 +39,7 @@
     "node": ">= 7"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
+    "ava": "^5.1.0",
     "cross-env": "^5.1.1"
   }
 }
